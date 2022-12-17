@@ -19,7 +19,8 @@ function App() {
     <Route path="/" element={<Home/>}/>
     <Route path="/product" element={<Product/>}/>
    </Routes>
-     {/* <h2>hello </h2> */}
+     {/* <h2>hello </h2>
+      */}
    </>
   );
 }
