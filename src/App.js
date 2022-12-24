@@ -7,17 +7,18 @@ import './App.css';
 import Navsection from './pagesComp/Navsection';
 import Home from './pagesComp/Home';
 import Product from './pagesComp/Product';
+import ProducDetails from './pagesComp/ProducDetails';
+import Addcart from './assest/productComponet/Addcart'
 function App() {
   return (
    <>
-    {/* <ul>
-      <li><Link to="/">hpoo</Link></li>
-      <li><Link to="/product">produc</Link></li>
-    </ul> */}
+   
    <Navsection/>
    <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/product" element={<Product/>}/>
+    <Route path="/productDetails" element={<ProducDetails/>}/>
+    <Route path="/cartpage" element={<Addcart/>}/>
    </Routes>
      {/* <h2>hello </h2>
       */}

@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import pic from '../assest/images.js'
 // import { FcApproval } from 'react-icons/fc';
 import { FaUserAlt, FaCartPlus } from "react-icons/fa";
-import LoginCom from './LoginCom.js';
+// import LoginCom from './LoginCom.js';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 
 import { Link } from 'react-router-dom'
@@ -58,7 +58,12 @@ const Navsection = () => {
                             {/* <hp className='text-white ms-2 mt-1 fw-bold'  >Login/Sign</hp> */}
                             <button className='btn text-white ms-1 fw-bold' onClick={() => SetPopup(true)}>Login/Sign</button>
 
+                           
+                          
+                            <Link to="/cartpage">
                             <h4 className='text-white ms-5'><FaCartPlus /></h4>
+                            
+                            </Link>
                             <hp className='text-white ms-2 mt-1 fw-bold'>Cart</hp>
                         </div>
 

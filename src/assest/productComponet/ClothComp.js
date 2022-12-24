@@ -1,5 +1,6 @@
 import React from 'react'
 import pic from '../images.js';
+import { Link } from 'react-router-dom';
 const ClothComp = () => {
   return (
     
@@ -7,7 +8,9 @@ const ClothComp = () => {
     <div className="container">
         <div className="row">
          
+         
           <div className="col-sm-2 col-lg-2 col-md-3">
+          <Link to="/productDetails">
             <div className="card m-3">
               <div className="imgDiv">
                 <img src={pic.img1} className="card-img-top img-fluid" alt="..." />
@@ -17,9 +20,13 @@ const ClothComp = () => {
                 <h6 className='text-success'>Min 50% Off</h6>
               </div>
             </div>
+            </Link>
           </div>
+          
+
 
           <div className="col-sm-2 col-lg-2 col-md-3">
+          <Link to="/productDetails">
             <div className="card m-3">
               <div className="imgDiv">
                 <img src={pic.img2} className="card-img-top img-fluid" alt="..." />
@@ -29,6 +36,7 @@ const ClothComp = () => {
                 <h6 className='text-success'>Min 50% Off</h6>
               </div>
             </div>
+            </Link>
           </div>
 
           <div className="col-sm-2 col-lg-2 col-md-3">
