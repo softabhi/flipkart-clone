@@ -1,0 +1,27 @@
+.main {
+    width: 30rem;
+    /* box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); */
+    /* box-shadow: 10px 10px 15px #aaaaaa; */
+    padding: 35px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aqua;
+}
+
+.active {
+    /* position: absolute; */
+    /* top: 10%; */
+    display: none;
+}
+
+.inactive {
+    display: none;
+}
+
+.closeBtn {
+    background: none;
+    border-style: none;
+    font-size: 30px;
+}

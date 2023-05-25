@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../cssComp/HomePage.css';
+// import '../cssComp/LoginCom.css'
 import ClothComp from '../assest/productComponet/ClothComp';
 import HomeProdu from '../assest/productComponet/HomeProduCom';
 import pic from '../assest/images.js';
 import Footer from './Footer';
+// import LoginCom from './LoginCom';
 const Home = () => {
 
 
   return (
     <>
-      <div className=" text-center">
+      <div className="text-center">
         <div className="row">
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
@@ -85,7 +87,8 @@ const Home = () => {
         </div>
       </div>
 
-
+      {/* <LoginCom/> */}
+{/* slider section  */}
       <div className="row">
         <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
           <div className="carousel-inner">
@@ -109,9 +112,9 @@ const Home = () => {
           </button>
         </div>
       </div>
-
+     
       <ClothComp />
-      <HomeProdu />
+      {/* <HomeProdu /> */}
       <Footer />
 
 
