@@ -1,0 +1,11 @@
+.main_content{
+    box-shadow: 0 .75rem 1rem rgba(0,0,0,.15) !important;
+}
+.tablehead{
+    background-color: rgb(42, 40, 40);
+    
+}
+.tablehead th{
+    color: white;
+   
+}

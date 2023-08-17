@@ -8,7 +8,7 @@ const UserProfile = ({ setLogout,setLogedUser,currentUser }) => {
     const [profileImg, setProfileImg] = useState();
 // console.log(open)
 
-    const menuItem = ["Name", "Num"];
+    // const menuItem = ["Name", "Num"];
 
     const menuRef = useRef();
     const imgRef = useRef();
@@ -34,14 +34,18 @@ const UserProfile = ({ setLogout,setLogedUser,currentUser }) => {
                 {
                     open && (
                         <div ref={menuRef} className="menus bg-white px-5 py-3 border border-secondary rounded">
-                            {
+                          {<div >
+                            <h4 className='text-dark'>{currentUser.name}</h4>
+                          </div>}
+                           
+                            {/* {
                                 menuItem.map((item) => (
                                     <ul>
                                         <li className='text-dark'>{item}</li>
                                     </ul>
                                 ))
                                
-                            }
+                            } */}
                              <div className="logout-btn">
                                     <button className='btn btn-success' onClick={()=> setLogout("sd")} >Logout</button>
                             </div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Siderbar = () => {
     return (
         <div className="container-fluid slider">
-            <div className='row bg-light' style={{ "height": "25rem", "width": "10rem" }}>
+            <div className='row bg-info' style={{ "height": "25rem", "width": "10rem" }}>
                 <div className="col">
                     <Link to=''>
                         <div className='row  pt-4 ps-3'>
@@ -18,7 +18,7 @@ const Siderbar = () => {
                     <Link to="/addproduct">
                         <div className='row py-2 ps-3'>
                             <FaListAlt />
-                            <button className='side-btn ps-2'>Inventory</button>
+                            <button className='side-btn ps-2'>Add Products</button>
                         </div>
                     </Link>
 
@@ -29,10 +29,10 @@ const Siderbar = () => {
                         </div>
                     </Link>
 
-                    <Link to=''>
+                    <Link to='/inventory'>
                         <div className='row py-2 ps-3'>
                             <FaUserFriends />
-                            <button className='side-btn ps-2'>Customers</button>
+                            <button className='side-btn ps-2'>Inventory</button>
                         </div>
                     </Link>
 
@@ -41,6 +41,13 @@ const Siderbar = () => {
                         <div className='row py-2 ps-3'>
                             <FaReadme />
                             <button className='side-btn ps-2'>Sell-Report</button>
+                        </div>
+                    </Link>
+
+                    <Link to='/customers'>
+                        <div className='row py-2 ps-3'>
+                            <FaReadme />
+                            <button className='side-btn ps-2'>Customers</button>
                         </div>
                     </Link>
                 </div>

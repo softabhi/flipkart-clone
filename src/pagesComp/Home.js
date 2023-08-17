@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../cssComp/HomePage.css';
 // import '../cssComp/LoginCom.css'
-import ClothComp from '../assest/productComponet/ClothComp';
+import ClothComp from '../assest/productComponet/ProductComp';
 import HomeProdu from '../assest/productComponet/HomeProduCom';
 import pic from '../assest/images.js';
 import Footer from './Footer';
@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="text-center">
+      <div className="container-fluid text-center">
         <div className="row">
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
@@ -85,34 +85,34 @@ const Home = () => {
           </div>
           <div className="col-sm-1"></div>
         </div>
-      </div>
 
-      {/* <LoginCom/> */}
-{/* slider section  */}
-      <div className="row">
-        <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img src={pic.im8} className="d-block w-100" alt="..." />
+
+        {/* <LoginCom/> */}
+        {/* slider section  */}
+        <div className="row ">
+          <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img src={pic.im8} className="d-block w-100" alt="..." />
+              </div>
+              <div className="carousel-item">
+                <img src={pic.im9} className="d-block w-100" alt="..." />
+              </div>
+              <div className="carousel-item">
+                <img src={pic.im10} className="d-block w-100" alt="..." />
+              </div>
             </div>
-            <div className="carousel-item">
-              <img src={pic.im9} className="d-block w-100" alt="..." />
-            </div>
-            <div className="carousel-item">
-              <img src={pic.im10} className="d-block w-100" alt="..." />
-            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
           </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
         </div>
       </div>
-     
       <ClothComp />
       {/* <HomeProdu /> */}
       <Footer />

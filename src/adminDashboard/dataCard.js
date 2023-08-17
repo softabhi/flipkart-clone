@@ -4,7 +4,7 @@ const DataCard = () => {
     return (
         <>
             <div className="container-fluid card-data" style={{ "position": "absolute", "left": "rem", "top": "5rem",maxWidth:"80rem" }}>
-                <div className="row m-2" style={{width: ""}}>
+                <div className="row m-2 mt-4" style={{width: ""}}>
 
                     <div className="col-sm-1 col-lg-3 mb-2 me-lg-2 bg-light border border-dark" style={{maxWidth:"15rem"}}>
                         <div className="row p-3">

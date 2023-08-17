@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState,useEffect } from 'react'
 import  '../cssComp/Navsection.css'
 import pic from '../assest/images.js'
 import axios from 'axios'
@@ -10,10 +10,51 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import UserProfile from './UserProfile';
 import SellerProfile from './SellerProfile';
-const Navsection = ({ currentUser, setLogedUser,currentLogedSeller,setLogedSeller,setLogoutSeller }) => {
+const Navsection = ({ currentUser, setLogedUser,setSearchItem,currentLogedSeller,setLogedSeller,setLogoutSeller }) => {
+   
+    const [products, setProducts] = useState("");
+    const [filterProduct, setFilterProduct] = useState();
 
-    
-    // console.log(currentUser);
+  
+
+    const fetchingData = () => {
+        fetch("http://localhost:5001/api/v2/products")
+            .then((response) => {
+                // console.log(response,11)
+                return response.json();
+            })
+            .then(data => {
+                setProducts(data)
+                // setFilterProduct(data);
+                setSearchItem(data)
+                // console.log(data,10)
+            })
+    }
+
+    useEffect(() => {
+        //  const feathData = async ()=>{
+        //     const data = await axios.get("http://localhost:5001/api/v1/products")
+        //     .then((res)=>{
+        //           setProducts(res.data)
+
+        //     })
+        //  }
+        //  feathData();
+        fetchingData();
+    }, [])
+
+
+   const userSearchItem = (e)=>{
+       setSearchItem(products.filter(f => f.productName.toLowerCase().includes(e.target.value)))
+   }
+
+
+
+    // const userInputItem = ()=>{
+
+    // }
+     
+    // console.log(searchItem);
 
     return (  
         <>
@@ -21,7 +62,7 @@ const Navsection = ({ currentUser, setLogedUser,currentLogedSeller,setLogedSelle
                 <div className="container-fluid" >
                     
                     <div className="row">
-                        <img src={pic.img16} alt="" className='img-fluid ms-lg-5 ms-sm-0' style={{ width: "8rem" }} />
+                        <img src={pic.img16} alt="" className='img-fluid ms-lg-1 ms-sm-0' style={{ width: "8rem" }} />
                     </div>
 
 
@@ -33,7 +74,7 @@ const Navsection = ({ currentUser, setLogedUser,currentLogedSeller,setLogedSelle
 
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-5 mb-2 mb-lg-0 ms-3 ms-sm">
+                         <ul className="navbar-nav me-5 mb-2 mb-lg-0 ms-3 ms-sm">
                             <li className="nav-item">
 
                                 <Link to="/" className='nav-link text-white'>Home</Link>
@@ -56,7 +97,12 @@ const Navsection = ({ currentUser, setLogedUser,currentLogedSeller,setLogedSelle
 
                         </ul>
                         <form className="d-flex" role="search">
-                            <input className="form-control me-2" style={{ width: "35vw" }} type="search" placeholder="Search" aria-label="Search" />
+                            <input className="form-control me-2" 
+                            style={{ width: "35vw" }} type="search" 
+                            placeholder="Search" aria-label="Search"  
+                            onChange={userSearchItem}
+                           
+                            />
                             <button className="btn btn-success me-5" type="submit"><FaSearch/></button>
                         </form>
 

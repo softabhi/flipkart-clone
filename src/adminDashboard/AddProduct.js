@@ -27,7 +27,7 @@ const AddProduct = () => {
 
         const formData = new FormData();
 
-        const { productName, price, quantity, discount } = product;
+        const { productName, price, discount} = product;
 
         formData.append('productName', product.productName)
         formData.append('price', product.price)
@@ -37,9 +37,18 @@ const AddProduct = () => {
 
         console.log(formData);
 
-        if (productName && price && quantity && discount) {
-            axios.post("http://localhost:5001/api/v1/addProduct", formData)
+        if (productName && price && discount) {
+            axios.post("http://localhost:5001/api/v2/addProduct", formData)
                 .then(rep => alert(rep.data));
+
+                 
+                setProduct({
+                    productName: "",
+                    price: "",
+                    quantity: "",
+                    discount:""
+        
+                });
         } else {
             alert("please enter all field");
         }
@@ -47,12 +56,7 @@ const AddProduct = () => {
 
 
         console.log(proImage);
-        // setProduct({
-        //     produName: "",
-        //     price: "",
-        //     quantity: "",
-
-        // });
+       
 
     }
     return (

@@ -1,3 +1,12 @@
+    .dsb_style{
+        position:absolute;
+        margin-left: 12rem;
+       
+         top:2rem;
+         border-bottom: 3px solid black;
+    }
+    
+    
     .side-btn {
         background: none;
         /* outline: none; */
@@ -26,10 +35,5 @@
     }
     
     .tabheding {
-        /* margin-right: 6px; */
-        color: red;
-        /* display: flex; */
-        /* display: inline-flex; */
-        /* flex-direction: row; */
-        /* flex-wrap: wrap; */
+       /* color: white; */
     }
