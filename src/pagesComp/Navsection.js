@@ -1,5 +1,6 @@
 import { React, useState,useEffect } from 'react'
 import  '../cssComp/Navsection.css'
+
 import pic from '../assest/images.js'
 import axios from 'axios'
 // import { FcApproval } from 'react-icons/fc';
@@ -14,11 +15,12 @@ const Navsection = ({ currentUser, setLogedUser,setSearchItem,currentLogedSeller
    
     const [products, setProducts] = useState("");
     const [filterProduct, setFilterProduct] = useState();
-
+     
+    const BASE_URL = process.env.BASE_URL
   
 
     const fetchingData = () => {
-        fetch("http://localhost:5001/api/v2/products")
+        fetch("process.env.BASE_URL/api/v2/products")
             .then((response) => {
                 // console.log(response,11)
                 return response.json();

@@ -62,7 +62,9 @@ function App() {
           />, <Home />] : <UserRegistration setLogedUser={setLogedUser} />} />
 
 
-          <Route path="/SellerRegis" element={logedSeller && logedSeller._id ? <Dashboard /> : <SellerRegis setLogedSeller={setLogedSeller} />} />        <Route path="/" element={[<Navsection currentUser={logedUser}
+          <Route path="/SellerRegis" element={logedSeller && logedSeller._id ? <Dashboard /> : <SellerRegis setLogedSeller={setLogedSeller} />} />       
+          
+           <Route path="/" element={[<Navsection currentUser={logedUser}
             // setLogout={setLogout} 
             setLogedUser={setLogedUser}
             setLogoutSeller={setLogedSeller}
