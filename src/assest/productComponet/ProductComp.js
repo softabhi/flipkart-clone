@@ -71,7 +71,7 @@ const ClothComp = () => {
 
                                             < div className="imgDiv" />
 
-                                            <img src={`http://localhost:5001/${item.produImg}`}
+                                            <img src={`https://flipclonebacked.onrender.com/${item.produImg}`}
                                                 className="card-img-top img-fluid"
                                                 alt="..." />
 

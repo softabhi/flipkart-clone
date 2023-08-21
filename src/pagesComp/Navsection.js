@@ -20,7 +20,7 @@ const Navsection = ({ currentUser, setLogedUser,setSearchItem,currentLogedSeller
   
 
     const fetchingData = () => {
-        fetch("process.env.BASE_URL/api/v2/products")
+        fetch("https://flipclonebacked.onrender.com/api/v2/products")
             .then((response) => {
                 // console.log(response,11)
                 return response.json();
