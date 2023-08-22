@@ -55,7 +55,7 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
         formData.append('profileImg', imagePic)
 
         if (name && email && (password === repassword)) {
-            axios.post("http://localhost:5001/api/v1/sellerRegistration", formData)
+            axios.post(`${BASE_URL}/api/v1/sellerRegistration`, formData)
                 .then(rep => alert(rep.data));
         } else {
             alert("please enter all field");
