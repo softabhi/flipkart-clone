@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useContext } from 'react'
 // import pic from '../images.js';
 // import axios from 'axios'
+import { BASE_URL } from '../../helpers/backedurl.js';
 import { Link } from 'react-router-dom';
 import clothList from './allProductData/ClothProdu.js';
 import { globleInfo } from '../../App.js';
@@ -71,7 +72,7 @@ const ClothComp = () => {
 
                                             < div className="imgDiv" />
 
-                                            <img src={`https://flipclonebacked.onrender.com/${item.produImg}`}
+                                            <img src={`${BASE_URL}/${item.produImg}`}
                                                 className="card-img-top img-fluid"
                                                 alt="..." />
 

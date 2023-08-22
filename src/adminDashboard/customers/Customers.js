@@ -7,6 +7,7 @@ import SingleUser from '../singleUserPage/SingleUser'
 import { userGetFunction } from '../singleUserPage/SingleUser'
 import { Link } from 'react-router-dom'
 import { globleInfo } from '../../App'
+import { BASE_URL } from '../../helpers/backedurl'
 
 
 const Customers = () => {
@@ -20,7 +21,7 @@ const Customers = () => {
 
 
     const fetchUsers = () => {
-        fetch("http://localhost:5001/api/v1/allUsers")
+        fetch(`${BASE_URL}/api/v1/allUsers`)
             .then((response) => {
                 return response.json();
             })

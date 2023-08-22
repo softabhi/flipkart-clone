@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './seller.css'
 // import './userlogin.css'
 import { Link, json } from 'react-router-dom';
-import axios from 'axios';
 
+import axios from 'axios';
+import { BASE_URL } from '../../helpers/backedurl';
 
 const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
@@ -53,7 +54,7 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
         formData.append('role', user.role)
         formData.append('profileImg', imagePic)
 
-        if (name && email && (password === repassword) && role) {
+        if (name && email && (password === repassword)) {
             axios.post("http://localhost:5001/api/v1/sellerRegistration", formData)
                 .then(rep => alert(rep.data));
         } else {
@@ -97,7 +98,7 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
     const login = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5001/api/v1/sellerLogin", userLogin)
+        axios.post(`${BASE_URL}/api/v1/sellerLogin`, userLogin)
             .then(res => {
                 alert(res.data.message)
                 setLogedSeller(res.data.user)

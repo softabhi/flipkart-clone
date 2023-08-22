@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../cssComp/LoginCom.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { BASE_URL } from '../helpers/backedurl';
 const SellerRegi = ({ setLogedSeller,setUserIcon }) => {
 
 
