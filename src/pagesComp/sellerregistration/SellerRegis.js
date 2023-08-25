@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './seller.css'
 // import './userlogin.css'
 import { Link, json } from 'react-router-dom';
-
-import axios from 'axios';
 import { BASE_URL } from '../../helpers/backedurl';
+import axios from 'axios';
+
 
 const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
@@ -98,7 +98,7 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
     const login = (e) => {
         e.preventDefault();
-        axios.post(`${BASE_URL}/api/v1/sellerLogin`, userLogin)
+        axios.post("https://flipclonebacked.onrender.com/api/v1/sellerLogin", userLogin)
             .then(res => {
                 alert(res.data.message)
                 setLogedSeller(res.data.user)
