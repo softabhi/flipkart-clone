@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './userregis.css'
 // import './userlogin.css'
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../../helpers/backedurl';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import { Jwt } from 'jsonwebtoken';
@@ -69,7 +70,7 @@ const UserRegistration = ({ setLogedUser,setUserIcon }) => {
         formData.append('profileImg', imagePic)
 
         if (name && userName && email && mobileNumber && address &&(password === repassword)) {
-            axios.post("http://localhost:5001/api/v1/registration", formData)
+            axios.post(`${BASE_URL}/api/v1/registration`, formData)
                 .then(rep => alert(rep.data));
         } else {
             alert("please enter all field");
@@ -97,7 +98,7 @@ const UserRegistration = ({ setLogedUser,setUserIcon }) => {
 
     const login = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5001/api/v1/login", userLogin)
+        axios.post(`${BASE_URL}/api/v1/login`, userLogin)
         .then(res => {alert(res.data.message)
             // console.log(res)
         setLogedUser(res.data.user)
