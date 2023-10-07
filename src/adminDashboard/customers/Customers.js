@@ -21,11 +21,13 @@ const Customers = () => {
 
 
     const fetchUsers = () => {
+        console.log("shubh")
         fetch(`${BASE_URL}/api/v1/allUsers`)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
+                console.log(data)
                 setUsers(data);
             })
     }
@@ -44,7 +46,7 @@ const Customers = () => {
 
     const userDelete = async (id) => {
 
-        const result = await fetch(`http://localhost:5001/api/v1/deleteUser/${id}`, {
+        const result = await fetch(`${BASE_URL}/api/v2/deleteUser/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "Application/json"

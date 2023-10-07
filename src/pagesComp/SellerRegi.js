@@ -1,200 +1,200 @@
-import React, { useState } from 'react'
-import '../cssComp/LoginCom.css'
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { BASE_URL } from '../helpers/backedurl';
-const SellerRegi = ({ setLogedSeller,setUserIcon }) => {
+// import React, { useState } from 'react'
+// import '../cssComp/LoginCom.css'
+// import { Link } from 'react-router-dom';
+// import axios from 'axios';
+// import { BASE_URL } from '../helpers/backedurl';
+// const SellerRegi = ({ setLogedSeller,setUserIcon }) => {
 
 
-    const [classForm, setClassForm] = useState(false);
-    const [LoginForm, setLoginForm] = useState(true);
-    const [imagePic, setImage] = useState("");
-    const [userLogin, setUserLogin] = useState({
-        email: "",
-        password: ""
-    })
-    const [user, setUser] = useState({
-        name:"",
+//     const [classForm, setClassForm] = useState(false);
+//     const [LoginForm, setLoginForm] = useState(true);
+//     const [imagePic, setImage] = useState("");
+//     const [userLogin, setUserLogin] = useState({
+//         email: "",
+//         password: ""
+//     })
+//     const [user, setUser] = useState({
+//         name:"",
         
-        email: "",
-        password: "",
-        repassword: "",
-        role:"",
-        profileImg:""
-    });
+//         email: "",
+//         password: "",
+//         repassword: "",
+//         role:"",
+//         profileImg:""
+//     });
 
-    const onChangeHandler = e => {
-        // console.log(e.target);
+//     const onChangeHandler = e => {
+//         // console.log(e.target);
 
-        const { name, value } = e.target;
-        setUser({ ...user, [name]: value })
+//         const { name, value } = e.target;
+//         setUser({ ...user, [name]: value })
 
-        setUserLogin({ ...userLogin, [name]: value })
-    }
+//         setUserLogin({ ...userLogin, [name]: value })
+//     }
 
 
 
-    const userRegisterHandler = (e) => {
-        e.preventDefault();
+//     const userRegisterHandler = (e) => {
+//         e.preventDefault();
 
-        const formData = new FormData();
+//         const formData = new FormData();
 
-        const { name, email, password, repassword, role} = user;
+//         const { name, email, password, repassword, role} = user;
 
-        formData.append('name',user.name)
+//         formData.append('name',user.name)
         
-        formData.append('email',user.email)
-        formData.append('password',user.password)
-        formData.append('repassword',user.repassword)
-        formData.append('role',user.role)
-        formData.append('profileImg',imagePic)
+//         formData.append('email',user.email)
+//         formData.append('password',user.password)
+//         formData.append('repassword',user.repassword)
+//         formData.append('role',user.role)
+//         formData.append('profileImg',imagePic)
 
-        if (name && email && (password === repassword) && role) {
-            axios.post("http://localhost:5001/api/v1/sellerRegistration", formData)
-                .then(rep => alert(rep.data));
-        } else {
-            alert("please enter all field");
-        }
-
-
-        console.log(formData);
-        console.log(imagePic);
-        setUser({
-            name: "",
-            email: "",
-            password: "",
-            repassword: "",
-            role:"",
-            profileImg:""
-        });
-    }
+//         if (name && email && (password === repassword) && role) {
+//             axios.post("http://localhost:5001/api/v1/sellerRegistration", formData)
+//                 .then(rep => alert(rep.data));
+//         } else {
+//             alert("please enter all field");
+//         }
 
 
-    // console.log(mainClass)
-    const classChangHandler = () => {
+//         console.log(formData);
+//         console.log(imagePic);
+//         setUser({
+//             name: "",
+//             email: "",
+//             password: "",
+//             repassword: "",
+//             role:"",
+//             profileImg:""
+//         });
+//     }
 
-        setClassForm(true);
-        setLoginForm(false)
 
-    }
+//     // console.log(mainClass)
+//     const classChangHandler = () => {
 
-    const registerHandler = () => {
-        setLoginForm(true)
-        setClassForm(false)
-    }
+//         setClassForm(true);
+//         setLoginForm(false)
+
+//     }
+
+//     const registerHandler = () => {
+//         setLoginForm(true)
+//         setClassForm(false)
+//     }
 
 
     
-    //   login code section
+//     //   login code section
 
-    const login = (e) => {
-        e.preventDefault();
-        axios.post("http://localhost:5001/api/v1/sellerLogin", userLogin)
-        .then(res => {alert(res.data.massage)
-        setLogedSeller(res.data.user)
-        // setUserIcon(res.data.user)   
-    }
-        );
+//     const login = (e) => {
+//         e.preventDefault();
+//         axios.post("http://localhost:5001/api/v1/sellerLogin", userLogin)
+//         .then(res => {alert(res.data.massage)
+//         setLogedSeller(res.data.user)
+//         // setUserIcon(res.data.user)   
+//     }
+//         );
       
         
 
-        setUserLogin({email:"",password:""});
-        // console.log(userLogin)
-        // console.log("mona")
-    }
+//         setUserLogin({email:"",password:""});
+//         // console.log(userLogin)
+//         // console.log("mona")
+//     }
 
 
 
-    // popupHandler(classChangHandler)
-    return (
-        <>
-            <div>
+//     // popupHandler(classChangHandler)
+//     return (
+//         <>
+//             <div>
 
-                <div className={classForm ? "active" : "logiform"}>
+//                 <div className={classForm ? "active" : "logiform"}>
 
-                    <div className="main shadow-lg">
-                        <Link to="/">
-                            <button >X</button>
-                        </Link>
+//                     <div className="main shadow-lg">
+//                         <Link to="/">
+//                             <button >X</button>
+//                         </Link>
 
-                        <div className="d-flex justify-content-evenly">
-                            <button className='btn btn-success login' onClick={classChangHandler} >Login</button>
-                            <button className='btn btn-primary singup' onClick={registerHandler}>Registration</button>
-                        </div>
-                        <div className="regis_form">
-                            <form action="" className='' enctype="multipart/form-data">
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor="name">Name</label>
-                                    <input type="text" id='name' name='name' value={user.name} onChange={onChangeHandler} />
-                                </div>
+//                         <div className="d-flex justify-content-evenly">
+//                             <button className='btn btn-success login' onClick={classChangHandler} >Login</button>
+//                             <button className='btn btn-primary singup' onClick={registerHandler}>Registration</button>
+//                         </div>
+//                         <div className="regis_form">
+//                             <form action="" className='' enctype="multipart/form-data">
+//                                 <div className='d-flex flex-column'>
+//                                     <label htmlFor="name">Name</label>
+//                                     <input type="text" id='name' name='name' value={user.name} onChange={onChangeHandler} />
+//                                 </div>
                                
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor="email">Email</label>
-                                    <input type="text" id='email' name='email' value={user.email} onChange={onChangeHandler} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor="password">Password</label>
-                                    <input type="text" id='password' name='password' value={user.password} onChange={onChangeHandler} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor="repassword">Repassword</label>
-                                    <input type="text" id='repassword' name='repassword' value={user.repassword} onChange={onChangeHandler} />
-                                </div>
+//                                 <div className='d-flex flex-column'>
+//                                     <label htmlFor="email">Email</label>
+//                                     <input type="text" id='email' name='email' value={user.email} onChange={onChangeHandler} />
+//                                 </div>
+//                                 <div className='d-flex flex-column'>
+//                                     <label htmlFor="password">Password</label>
+//                                     <input type="text" id='password' name='password' value={user.password} onChange={onChangeHandler} />
+//                                 </div>
+//                                 <div className='d-flex flex-column'>
+//                                     <label htmlFor="repassword">Repassword</label>
+//                                     <input type="text" id='repassword' name='repassword' value={user.repassword} onChange={onChangeHandler} />
+//                                 </div>
 
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor="role">Role</label>
-                                    <input type="text" id='role' name='role' value={user.role} onChange={onChangeHandler} />
-                                </div>
+//                                 <div className='d-flex flex-column'>
+//                                     <label htmlFor="role">Role</label>
+//                                     <input type="text" id='role' name='role' value={user.role} onChange={onChangeHandler} />
+//                                 </div>
 
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor="profileImg">Profile Image</label>
-                                    <input type="file" id='profileImg' name='profileImg'  onChange={(e)=>setImage(e.target.files[0])} />
-                                </div>
-                                <div className='d-flex justify-content-center p-3'>
-                                    <button className='btn btn-success' onClick={userRegisterHandler} >Register</button>
-                                </div>
+//                                 <div className='d-flex flex-column'>
+//                                     <label htmlFor="profileImg">Profile Image</label>
+//                                     <input type="file" id='profileImg' name='profileImg'  onChange={(e)=>setImage(e.target.files[0])} />
+//                                 </div>
+//                                 <div className='d-flex justify-content-center p-3'>
+//                                     <button className='btn btn-success' onClick={userRegisterHandler} >Register</button>
+//                                 </div>
 
-                            </form>
-                        </div>
-                    </div>
-                </div>
+//                             </form>
+//                         </div>
+//                     </div>
+//                 </div>
 
 
-                <div className={LoginForm ? "inactive" : ""}>
-                    <div className="regiform main shadow-lg">
-                        <Link to="/">
-                            <button >X</button>
-                        </Link>
-                        <div className="d-flex justify-content-evenly">
-                            <button className='btn btn-success login' onClick={classChangHandler}>Login</button>
-                            <button className='btn btn-primary singup' onClick={registerHandler}>Registration</button>
-                        </div>
-                        <form action="" className='p'>
-                            <h4 className='d-flex justify-content-evenly m-3'>Login here</h4>
-                            <div className="row">
-                                <div className="col d-flex  justify-content-evenly">
-                                    <label htmlFor="email">Username</label>
-                                    <input type="email" id='email' className='m-3' name='email' value={userLogin.email} onChange={onChangeHandler} />
-                                </div>
-                            </div>
+//                 <div className={LoginForm ? "inactive" : ""}>
+//                     <div className="regiform main shadow-lg">
+//                         <Link to="/">
+//                             <button >X</button>
+//                         </Link>
+//                         <div className="d-flex justify-content-evenly">
+//                             <button className='btn btn-success login' onClick={classChangHandler}>Login</button>
+//                             <button className='btn btn-primary singup' onClick={registerHandler}>Registration</button>
+//                         </div>
+//                         <form action="" className='p'>
+//                             <h4 className='d-flex justify-content-evenly m-3'>Login here</h4>
+//                             <div className="row">
+//                                 <div className="col d-flex  justify-content-evenly">
+//                                     <label htmlFor="email">Username</label>
+//                                     <input type="email" id='email' className='m-3' name='email' value={userLogin.email} onChange={onChangeHandler} />
+//                                 </div>
+//                             </div>
 
-                            <div className="row">
-                                <div className="col d-flex justify-content-evenly m-3">
-                                    <label htmlFor="password">Password</label>
-                                    <input type="text" id='password' name='password' value={userLogin.password} onChange={onChangeHandler} />
-                                </div>
-                            </div>
+//                             <div className="row">
+//                                 <div className="col d-flex justify-content-evenly m-3">
+//                                     <label htmlFor="password">Password</label>
+//                                     <input type="text" id='password' name='password' value={userLogin.password} onChange={onChangeHandler} />
+//                                 </div>
+//                             </div>
 
-                            <div className='d-flex justify-content-center p-3'>
-                                <button className='btn btn-success' onClick={login} >Login</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+//                             <div className='d-flex justify-content-center p-3'>
+//                                 <button className='btn btn-success' onClick={login} >Login</button>
+//                             </div>
+//                         </form>
+//                     </div>
+//                 </div>
 
-            </div>
-        </>
-    )
-}
+//             </div>
+//         </>
+//     )
+// }
 
-export default SellerRegi
+// export default SellerRegi

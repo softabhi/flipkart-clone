@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react'
+
 import axios from 'axios';
+import { BASE_URL } from '../helpers/backedurl';
 
 const AddProduct = () => {
 
@@ -38,7 +40,7 @@ const AddProduct = () => {
         console.log(formData);
 
         if (productName && price && discount) {
-            axios.post("http://localhost:5001/api/v2/addProduct", formData)
+            axios.post(`${BASE_URL}/api/v2/addProduct`, formData)
                 .then(rep => alert(rep.data));
 
                  

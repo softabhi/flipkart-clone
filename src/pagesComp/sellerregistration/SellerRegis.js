@@ -98,7 +98,7 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
     const login = (e) => {
         e.preventDefault();
-        axios.post("https://flipclonebacked.onrender.com/api/v1/sellerLogin", userLogin)
+        axios.post(`${BASE_URL}/api/v1/sellerLogin`, userLogin)
             .then(res => {
                 alert(res.data.message)
                 setLogedSeller(res.data.user)

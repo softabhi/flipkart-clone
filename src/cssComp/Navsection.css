@@ -3,3 +3,8 @@
 .logout:hover {
     display: block;
 } */
+
+.nav-pills .nav-link{
+    background-color: #0d6efd;
+    color: #fff;
+}

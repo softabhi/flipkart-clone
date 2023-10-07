@@ -4,14 +4,16 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faPenSquare } from '@fortawesome/free-solid-svg-icons'
 import SingleUser from '../singleUserPage/SingleUser'
-import { userGetFunction } from '../singleUserPage/SingleUser'
+import { productsGetFunction } from '../singleUserPage/SingleUser'
 import { Link } from 'react-router-dom'
 import { globleInfo } from '../../App'
+import { BASE_URL } from '../../helpers/backedurl'
+
 
 
 const Inventory = () => {
 
-    const [users, setUsers] = useState("");
+    const [products, setProducts] = useState("");
     
     const {singleUserData} = useContext(globleInfo);
     // console.log(singleUserData)/
@@ -20,12 +22,12 @@ const Inventory = () => {
 
 
     const fetchUsers = () => {
-        fetch("http://localhost:5001/api/v1/allUsers")
+        fetch(`${BASE_URL}/api/v2/products`)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                setUsers(data);
+                setProducts(data);
             })
     }
 
@@ -34,16 +36,16 @@ const Inventory = () => {
     }, [])
 
 
-//    const userEditHandler = (id)=>{
+//    const productsEditHandler = (id)=>{
 //      singleUserDetails(id)
 //    }
 
 
 
 
-    const userDelete = async (id) => {
+    const productsDelete = async (id) => {
 
-        const result = await fetch(`http://localhost:5001/api/v1/deleteUser/${id}`, {
+        const result = await fetch(`${BASE_URL}/api/v2/deleteProduct/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "Application/json"
@@ -67,7 +69,7 @@ const Inventory = () => {
     return (
 
         <>
-          <h1>User List</h1>
+          <h1>All Products Data</h1>
         <div className='container main_content' style={{ width: "" }}>
             
             <div className="row border border-dark py-2 tablehead" >
@@ -81,22 +83,22 @@ const Inventory = () => {
 
 
             {
-                users.length > 0 && users.map((user, index) => {
+                products.length > 0 && products.map((products, index) => {
                     return (
                         <div className="row bg-light border border-dark">
                             <div className="col-1 my-1"><td>{index + 1}</td></div>
-                            <div className="col-3 my-1"><td>{user.name}</td></div>
-                            <div className="col-3 my-1"><td>{user.email}</td></div>
+                            <div className="col-3 my-1"><td>{products.productName}</td></div>
+                            <div className="col-3 my-1"><td>{products.email}</td></div>
                             <div className="col-2 my-1"><td>5135645652</td></div>
                             <div className="col-1 my-1"><td>14565</td></div>
                             <div className="col-2 my-1">
-                                <Link to='/singleuser'>
-                                    <button className='btn  py-1 my-1' onClick={()=>singleUserData(user._id)}  ><FontAwesomeIcon icon={faEye} /></button>
+                                <Link to='/singleproducts'>
+                                    <button className='btn  py-1 my-1' onClick={()=>singleUserData(products._id)}  ><FontAwesomeIcon icon={faEye} /></button>
                                 </Link>
-                                <button className='btn  py-1 my-1' onClick={() => userDelete(user._id)} ><FaTrashAlt /></button>
+                                <button className='btn  py-1 my-1' onClick={() => productsDelete(products._id)} ><FaTrashAlt /></button>
 
-                                <Link to='/userEdit'>
-                                    <button className='btn  py-1 my-1' onClick={()=>singleUserData(user._id)} ><FontAwesomeIcon icon={faPenSquare} /></button>
+                                <Link to='/productsEdit'>
+                                    <button className='btn  py-1 my-1' onClick={()=>singleUserData(products._id)} ><FontAwesomeIcon icon={faPenSquare} /></button>
                                 </Link>
                             </div>
                         </div>

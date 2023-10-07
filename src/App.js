@@ -31,10 +31,11 @@ function App() {
   const [logoutSeller, setLogoutSeller] = useState();
   const [userId, setUserId] = useState("");
   const [searchItem, setSearchItem] = useState();
+  const [addProduct, setCurrProduId] = useState();
   // const [userIcon, setUserIcon] = useState();
 
   // setUserIcon()
-  // console.log(searchItem)
+  // console.log(currProduId)
   // console.log(logoutSeller)  
   // setLogedUser(logout)
 
@@ -45,7 +46,7 @@ function App() {
   return (
 
 
-    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem }}>
+    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem,addProduct }}>
       <>
         {/* <UserProfile/> */}
         {/* <LoginCom/> */}
@@ -70,7 +71,8 @@ function App() {
             setLogoutSeller={setLogedSeller}
             currentLogedSeller={logedSeller}
             setSearchItem={setSearchItem}
-          />, <Home />]} />
+            
+          />, <Home setCurrProduId={setCurrProduId} />]} />
 
 
           {/* <Route path="/sellerRegis" element={<SellerRegi/>} /> */}
@@ -94,8 +96,7 @@ function App() {
         /* adime routes */
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
-        {/* <h2>hello </h2>
-      */}
+       
       </>
     </globleInfo.Provider>
   );

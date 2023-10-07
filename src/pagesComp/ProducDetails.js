@@ -1,18 +1,66 @@
-import React, { useState } from 'react'
+import React, { useState,useContext, useEffect } from 'react'
 import pic from '../assest/images.js';
 import Footer from './Footer.js';
 import { AiFillStar } from 'react-icons/ai'
 import { IoIosStarHalf } from 'react-icons/io'
-const ProducDetails = () => {
+import { globleInfo } from '../App.js';
+import { BASE_URL } from '../helpers/backedurl.js';
 
+const ProducDetails = () => {
+    
+    const { addProduct } = useContext(globleInfo)
+    const [addCardData,setAddCartData] = useState();
+
+    // setAddCartData(addProduct);
+        
     let mainImg = document.getElementById("main-img");
     let smallImg = document.getElementsByClassName("small-img");
 
-    console.log(mainImg);
-    console.log(smallImg);
+
+     console.log(addProduct);
+
+    //   useEffect(()=>{
+        
+    //   },[])
+
+   
+      const addCartFunction =()=>{
+       
+        var productCart = JSON.parse(localStorage.getItem('cartData') || "[]")
+        productCart.push(addProduct)
+        localStorage.setItem('cartData', JSON.stringify(productCart));
+        console.log(addCardData)
+      }
+
+    
 
     const [singImg, SetImg] = useState(pic.img1);
+    
 
+//      const getSingleProduDetails =  ()=>{
+//       let result = fetch(`${BASE_URL}/api/v2/singleproduct/${addCurtProduId}`)
+//         .then((data)=>{
+//             return data.json();
+//         })
+//         .then((produtData)=>{
+//             // console.log(produtData)
+//         //    setSingProduData(produtData)
+//         return produtData;
+//         })
+
+//         setSingProduData(result);
+//         // console.log(result)
+//         // console.log("monu")
+//   }
+   
+
+
+//      useEffect(()=>{
+//         getSingleProduDetails();
+        
+//      },[addCurtProduId])
+
+ 
 
     return (
         <>
@@ -20,7 +68,7 @@ const ProducDetails = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-5 d-flex flex-column justify-content-around mt-5 mb-5">
-                        <img src={singImg} className="img-fluid" id='main-img' style={{ width: "35rem", height: "30rem" }} alt="" />
+                        <img src={`${BASE_URL}/${addProduct.produImg}`} className="img-fluid" id='main-img' style={{ width: "35rem", height: "30rem" }} alt="" />
                         <div className="row mt-2">
                             <div className="col-3">
                                 <img src={pic.img1} className="img-fluid small-img" onClick={() => SetImg(smallImg[0].src)} style={{ width: "7rem", height: "8rem" }} alt="" />
@@ -40,7 +88,7 @@ const ProducDetails = () => {
                         <div className="row mt-lg-5">
                             <div className="row">
                                 <h5>Home/T-shirt</h5>
-                                <h2 className='fw-bold'>Men Fashion T-shirt</h2>
+                                <h2 className='fw-bold'>{addProduct.productName}</h2>
                                 <h4>$139</h4>
                             </div>
 
@@ -79,7 +127,7 @@ const ProducDetails = () => {
                                 <div className="col-3"></div>
                                 <div className="col-6 m-3">
                                     <button className='btn btn-success m-2'>Buy Now</button>
-                                    <button className='btn btn-primary m-2'>Add Cart</button>
+                                    <button className='btn btn-primary m-2' onClick={addCartFunction}>Add Cart</button>
                                 </div>
                                 <div className="col-3"></div>
 

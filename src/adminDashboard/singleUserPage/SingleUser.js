@@ -1,5 +1,7 @@
 import React, { useEffect, useState,useContext } from 'react'
 import { globleInfo } from '../../App';
+import { BASE_URL } from '../../helpers/backedurl';
+
 // export const userGetFunction = (id)=>{
 //     //  console.log(id);
 //     return id;
@@ -13,7 +15,7 @@ const SingleUser = () => {
     
 
     const [viewUserData, setSingleUserData] = useState("");
-    const [userId, setUserId] = useState("");
+    // const [userId, setUserId] = useState("");
      
     const {appColor,singleUserId} = useContext(globleInfo);
     console.log(appColor)
@@ -23,8 +25,8 @@ const SingleUser = () => {
     // setUserId(userGetFunction);
     // console.log(userId)
 
-  const singleUserDetails =async (userId) =>{
-    fetch(`http://localhost:5001/api/v1/singleUser/${singleUserId}`)
+  const singleUserDetails =async () =>{
+    fetch(`${BASE_URL}/api/v1/singleUser/${singleUserId}`)
     .then((response)=>{
         return response.json();
     }).then((userData)=>{

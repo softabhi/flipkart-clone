@@ -2,14 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../cssComp/HomePage.css';
 // import '../cssComp/LoginCom.css'
-import ClothComp from '../assest/productComponet/ProductComp';
+import ProductComp from '../assest/productComponet/ProductComp';
 import HomeProdu from '../assest/productComponet/HomeProduCom';
 import pic from '../assest/images.js';
 import Footer from './Footer';
 // import LoginCom from './LoginCom';
-const Home = () => {
+const Home = ({setCurrProduId}) => {
 
-
+  // setCurrProduId=("mona")
+  // setCurrProduId("dato")
   return (
     <>
       <div className="container-fluid text-center">
@@ -113,7 +114,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <ClothComp />
+      <ProductComp setCurrProduId={setCurrProduId}/>
       {/* <HomeProdu /> */}
       <Footer />
 
