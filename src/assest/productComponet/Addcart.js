@@ -7,22 +7,22 @@ import { BASE_URL } from '../../helpers/backedurl'
 const Addcart = () => {
 
     const [count, setCount] = useState(0);
-    const [cartItem,setCartItem] = useState([])
+    const [cartItem, setCartItem] = useState([])
 
     const cartItems = JSON.parse(localStorage.getItem('cartData'))
     // console.log(cartItems)
-     
-    useEffect(()=>{
+
+    useEffect(() => {
         setCartItem([...cartItems])
-    },[])
+    }, [])
 
     const increasFunc = (itemId) => {
-        const targetCart = cartItem.filter((item, id)=>{
-            if(itemId === id){
+        const targetCart = cartItem.filter((item, id) => {
+            if (itemId === id) {
                 setCount(count + 1)
             }
         })
-       
+
     }
     const decreasFunc = () => {
         setCount(count - 1)
@@ -30,10 +30,11 @@ const Addcart = () => {
 
 
     const DeletFunction = (itemId) => {
-        // console.log(itemId)
-       const updatedCart =  cartItem.filter((item,id)=>{
-           return itemId!=id
+        console.log(itemId)
+        const updatedCart = cartItem.filter((item, id) => {
+            return itemId != id
         })
+        // const updatedCart = localStorage.removeItem('cartData[itemId]')
         setCartItem(updatedCart)
     }
 
@@ -69,8 +70,8 @@ const Addcart = () => {
                                                     <div className="col-4 border border-primary">
                                                         <p>{count}</p>
                                                     </div>
-                                                    <div key={index}  className="col-3 ">
-                                                        <button onClick={()=>increasFunc(index)}>+</button>
+                                                    <div key={index} className="col-3 ">
+                                                        <button onClick={() => increasFunc(index)}>+</button>
                                                     </div>
                                                 </div>
                                             </div>

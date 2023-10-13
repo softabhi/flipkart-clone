@@ -17,7 +17,7 @@ const ProducDetails = () => {
     let smallImg = document.getElementsByClassName("small-img");
 
 
-     console.log(addProduct);
+    //  console.log(addProduct);
 
     //   useEffect(()=>{
         

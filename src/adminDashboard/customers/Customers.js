@@ -21,8 +21,14 @@ const Customers = () => {
 
 
     const fetchUsers = () => {
-        console.log("shubh")
-        fetch(`${BASE_URL}/api/v1/allUsers`)
+        // console.log("mona")
+        // fetch("http://localhost:5001/api/v1/allUsers"
+        fetch(`${BASE_URL}/api/v1/allUsers`,{
+            headers: {
+				'x-access-token': localStorage.getItem('userdata'),
+			},
+          })
+       
             .then((response) => {
                 return response.json();
             })

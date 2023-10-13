@@ -98,15 +98,17 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
     const login = (e) => {
         e.preventDefault();
+        // axios.post("http://localhost:5001/api/v1/sellerLogin", userLogin)
         axios.post(`${BASE_URL}/api/v1/sellerLogin`, userLogin)
             .then(res => {
                 alert(res.data.message)
                 setLogedSeller(res.data.user)
                 // setUserIcon(res.data.user)   
+                localStorage.setItem('userdata',res.data.webToken);
             }
             );
 
-            localStorage.setItem('userdata',userLogin.email);
+            
         setUserLogin({ email: "", password: "" });
         // console.log(userLogin)
         // console.log("mona")
