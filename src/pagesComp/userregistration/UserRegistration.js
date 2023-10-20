@@ -9,7 +9,8 @@ import axios from 'axios';
 
 
 
-const UserRegistration = ({ setLogedUser,setUserIcon }) => {
+
+const UserRegistration = ({ setLogedUser, setUserIcon }) => {
     const secKey = 'adfjdsfsdjkjkdkdjf'
     const navigation = useNavigate()
 
@@ -58,7 +59,7 @@ const UserRegistration = ({ setLogedUser,setUserIcon }) => {
 
         const formData = new FormData();
 
-        const { name, userName, email, password, repassword,mobileNumber,address } = user;
+        const { name, userName, email, password, repassword, mobileNumber, address } = user;
 
         formData.append('name', user.name)
         formData.append('userName', user.userName)
@@ -69,7 +70,7 @@ const UserRegistration = ({ setLogedUser,setUserIcon }) => {
         formData.append('address', user.address)
         formData.append('profileImg', imagePic)
 
-        if (name && userName && email && mobileNumber && address &&(password === repassword)) {
+        if (name && userName && email && mobileNumber && address && (password === repassword)) {
             axios.post(`${BASE_URL}/api/v1/registration`, formData)
                 .then(rep => alert(rep.data));
         } else {
@@ -99,26 +100,27 @@ const UserRegistration = ({ setLogedUser,setUserIcon }) => {
     const login = (e) => {
         e.preventDefault();
         axios.post(`${BASE_URL}/api/v1/login`, userLogin)
-        .then(res => {alert(res.data.message)
-            // console.log(res)
-        setLogedUser(res.data.user)
-        // console.log(res.data.user)
-        // setUserIcon(res.data.user)
+            .then(res => {
+                alert(res.data.message)
+                // console.log(res)
+                setLogedUser(res.data.user)
+                // console.log(res.data.user)
+                // setUserIcon(res.data.user)
 
-        navigation("/")
+                navigation("/")
 
-    }
-        );
-      
-        
+            }
+            );
+
+
         // localStorage.setItem('userToken',webToken)
-        setUserLogin({email:"",password:""});
+        setUserLogin({ email: "", password: "" });
         // console.log(userLogin)
         // console.log("mona")
     }
 
 
-
+  
 
 
 
@@ -241,6 +243,8 @@ const UserRegistration = ({ setLogedUser,setUserIcon }) => {
                     </div>
                 </div>
 
+
+            
 
             </div>
         </>

@@ -20,6 +20,7 @@ import SingleUser from './adminDashboard/singleUserPage/SingleUser';
 import UserEdit from './adminDashboard/userEditpage/UserEdit';
 import Inventory from './adminDashboard/inventorypage/Inventory';
 import UserEdition from './adminDashboard/usersedit/UserEdition';
+import Mdb from './mdb';
 
 export const globleInfo = createContext();
 
@@ -76,7 +77,7 @@ function App() {
 
 
           {/* <Route path="/sellerRegis" element={<SellerRegi/>} /> */}
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/mdb" element={<Mdb/>} />
           {/* <Route path="/product" element={<Product />} /> */}
 
 

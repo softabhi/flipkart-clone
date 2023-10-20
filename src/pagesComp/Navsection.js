@@ -3,417 +3,462 @@ import '../cssComp/Navsection.css'
 import { BASE_URL } from '../helpers/backedurl'
 import pic from '../assest/images.js'
 import axios from 'axios'
-import { FcApproval } from 'react-icons/fc';
+// import { FcApproval } from 'react-icons/fc';
 
 import { FaUserAlt, FaCartPlus, FaUserCircle, FaSearch } from "react-icons/fa";
 // import LoginCom from './RegiCom.js';
-import { Modal, ModalBody, ModalHeader } from 'reactstrap'
+// import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 
 import { Link } from 'react-router-dom'
 import UserProfile from './UserProfile';
 import SellerProfile from './SellerProfile';
+// import {
+//     MDBContainer,
+//     MDBTabs,
+//     MDBTabsItem,
+//     MDBTabsLink,
+//     MDBTabsContent,
+//     MDBTabsPane,
+//     MDBBtn,
+//     MDBIcon,
+//     MDBInput,
+//     MDBCheckbox
+// }
+//     from 'mdb-react-ui-kit';
 
 
 
+const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSeller, setLogedSeller, setLogoutSeller, setCurrProduId }) => {
 
-const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSeller, setLogedSeller, setLogoutSeller,setCurrProduId }) => {
-
-    const [modal, SetPopup] = useState(false);
+    // const [modal, SetPopup] = useState(false);
     const [products, setProducts] = useState("");
-    const [filterProduct, setFilterProduct] = useState();
+    // const [filterProduct, setFilterProduct] = useState();
 
     // const BASE_URL = process.env.BASE_URL
 
 
 
 
-    const [classForm, setClassForm] = useState(false);
-    const [LoginForm, setLoginForm] = useState(true);
-    const [imagePic, setImage] = useState("");
-    const [userLogin, setUserLogin] = useState({
-        email: "",
-        password: ""
-    })
-    const [user, setUser] = useState({
-        name: "",
-        userName: "",
-        email: "",
-        password: "",
-        repassword: "",
-        profileImg: ""
-    });
-
-    const onChangeHandler = e => {
-        // console.log(e.target);
-
-        const { name, value } = e.target;
-        setUser({ ...user, [name]: value })
-
-        setUserLogin({ ...userLogin, [name]: value })
-    }
+    // const [classForm, setClassForm] = useState(false);
+    // const [LoginForm, setLoginForm] = useState(true);
 
 
 
-    const userRegisterHandler = (e) => {
-        e.preventDefault();
 
-        const formData = new FormData();
-
-        const { name, userName, email, password, repassword } = user;
-
-        formData.append('name', user.name)
-        formData.append('userName', user.userName)
-        formData.append('email', user.email)
-        formData.append('password', user.password)
-        formData.append('repassword', user.repassword)
-        formData.append('profileImg', imagePic)
-
-        if (name && userName && email && (password === repassword)) {
-            axios.post("http://localhost:5001/api/v1/registration", formData)
-                .then(rep => alert(rep.data));
-        } else {
-            alert("please enter all field");
-        }
+ 
 
 
-        console.log(formData);
-        console.log(imagePic);
-        setUser({
-            name: "",
-            userName: "",
-            email: "",
-            password: "",
-            repassword: "",
-            profileImg: ""
-        });
-    }
+    // regis login section handler
+    // const loginCompHandler = () => {
+    //     setLoginSection(true);
+    //     setRegisSection(false)
+    // }
+    // const registCompHandler = () => {
+    //     setRegisSection(true);
+    //     setLoginSection(false);
+    // }
+
+   
+
+
+    
+
+
+
+
+
+
+    // const [userLogin, setUserLogin] = useState({
+    //     email: "",
+    //     password: ""
+    // })
+    // const [user, setUser] = useState({
+    //     name: "",
+    //     userName: "",
+    //     email: "",
+    //     password: "",
+    //     repassword: "",
+    //     profileImg: ""
+    // });
+
+    // const onChangeHandler = e => {
+    //     // console.log(e.target);
+
+    //     const { name, value } = e.target;
+    //     setUser({ ...user, [name]: value })
+
+    //     setUserLogin({ ...userLogin, [name]: value })
+    // }
+
+
+
+    // const userRegisterHandler = (e) => {
+    //     e.preventDefault();
+
+    //     const formData = new FormData();
+
+    //     const { name, userName, email, password, repassword } = user;
+
+    //     formData.append('name', user.name)
+    //     formData.append('userName', user.userName)
+    //     formData.append('email', user.email)
+    //     formData.append('password', user.password)
+    //     formData.append('repassword', user.repassword)
+    //     formData.append('profileImg', imagePic)
+
+    //     if (name && userName && email && (password === repassword)) {
+    //         axios.post("http://localhost:5001/api/v1/registration", formData)
+    //             .then(rep => alert(rep.data));
+    //     } else {
+    //         alert("please enter all field");
+    //     }
+
+
+    //     console.log(formData);
+    //     console.log(imagePic);
+    //     setUser({
+    //         name: "",
+    //         userName: "",
+    //         email: "",
+    //         password: "",
+    //         repassword: "",
+    //         profileImg: ""
+    //     });
+    // }
 
 
     // console.log(mainClass)
-    const classChangHandler = () => {
+    // const classChangHandler = () => {
 
-        setClassForm(true);
-        setLoginForm(false)
+    //     setClassForm(true);
+    //     setLoginForm(false)
 
-    }
+    // }
 
-    const registerHandler = () => {
-        setLoginForm(true)
-        setClassForm(false)
-    }
+    // const registerHandler = () => {
+    //     setLoginForm(true)
+    //     setClassForm(false)
+    // }
 
 
 
     //   login code section
 
-    const login = (e) => {
-        e.preventDefault();
-        axios.post("http://localhost:5001/api/v1/login", userLogin)
-            .then(res => {
-                alert(res.data.massage)
-                setLogedUser(res.data.user)
-                // setUserIcon(res.data.user)
-            }
-            );
+    // const login = (e) => {
+    //     e.preventDefault();
+    //     axios.post("http://localhost:5001/api/v1/login", userLogin)
+    //         .then(res => {
+    //             alert(res.data.massage)
+    //             setLogedUser(res.data.user)
+    //             // setUserIcon(res.data.user)
+    //         }
+    //         );
 
-        }
-
-
-        const  changeHandler =()=>{
-
-        }
-
-       function loginHandler(){
-
-       }
-
-        function register(){
-
-       }
+    //     }
 
 
-        const fetchingData = () => {
-            fetch(`${BASE_URL}/api/v2/products`)
-                .then((response) => {
-                    // console.log(response,11)
-                    return response.json();
-                })
-                .then(data => {
-                    setProducts(data)
-                    // setFilterProduct(data);
-                    setSearchItem(data)
-                    // console.log(data,10)
-                    
-                })
-        }
+    // const  changeHandler =()=>{
 
-        useEffect(() => {
-            //  const feathData = async ()=>{
-            //     const data = await axios.get("http://localhost:5001/api/v1/products")
-            //     .then((res)=>{
-            //           setProducts(res.data)
+    // }
 
-            //     })
-            //  }
-            //  feathData();
-            fetchingData();
-        }, [])
+    //    function loginHandler(){
+
+    //    }
+
+    //     function register(){
+
+    //    }
 
 
-        const userSearchItem = (e) => {
-            setSearchItem(products.filter(f => f.productName.toLowerCase().includes(e.target.value)))
-        }
+    const fetchingData = () => {
+        fetch(`${BASE_URL}/api/v2/products`)
+            .then((response) => {
+                // console.log(response,11)
+                return response.json();
+            })
+            .then(data => {
+                setProducts(data)
+                // setFilterProduct(data);
+                setSearchItem(data)
+                // console.log(data,10)
 
-        // setCurrProduId("data")
+            })
+    }
 
-        // const userInputItem = ()=>{
+    useEffect(() => {
+        //  const feathData = async ()=>{
+        //     const data = await axios.get("http://localhost:5001/api/v1/products")
+        //     .then((res)=>{
+        //           setProducts(res.data)
 
-        // }
-
-        // console.log(searchItem);
-
-        return (
-            <>
-                <nav className="navbar navbar-expand-lg bg-primary" >
-                    <div className="container-fluid" >
-
-                        <div className="row">
-                            <img src={pic.img16} alt="" className='img-fluid ms-lg-1 ms-sm-0' style={{ width: "8rem" }} />
-                        </div>
+        //     })
+        //  }
+        //  feathData();
+        fetchingData();
+    }, [])
 
 
+    const userSearchItem = (e) => {
+        setSearchItem(products.filter(f => f.productName.toLowerCase().includes(e.target.value)))
+    }
+
+    // setCurrProduId("data")
+
+    // const userInputItem = ()=>{
+
+    // }
+
+    // console.log(searchItem);
+
+    return (
+        <>
+            <nav className="navbar navbar-expand-lg bg-primary" >
+                <div className="container-fluid" >
+
+                    <div className="row">
+                        <img src={pic.img16} alt="" className='img-fluid ms-lg-1 ms-sm-0' style={{ width: "8rem" }} />
+                    </div>
 
 
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
 
 
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav me-5 mb-2 mb-lg-0 ms-3 ms-sm">
-                                <li className="nav-item">
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
 
-                                    <Link to="/" className='nav-link text-white'>Home</Link>
-                                </li>
 
-                                <li className="nav-item dropdown">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-5 mb-2 mb-lg-0 ms-3 ms-sm">
+                            <li className="nav-item">
 
-                                    <Link to="/product" className='nav-link dropdown-toggle text-white' role="button" data-bs-toggle="dropdown" aria-expanded="false">Product</Link>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Action</a></li>
-                                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                                        <li><hr className="dropdown-divider" /></li>
-                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </li>
-                                <li className="nav-item">
+                                <Link to="/" className='nav-link text-white'>Home</Link>
+                            </li>
 
-                                    <Link to="/product" className="nav-link text-white">Offer</Link>
-                                </li>
+                            <li className="nav-item dropdown">
 
-                            </ul>
-                            <form className="d-flex" role="search">
-                                <input className="form-control me-2"
-                                    style={{ width: "35vw" }} type="search"
-                                    placeholder="Search" aria-label="Search"
-                                    onChange={userSearchItem}
+                                <Link to="/product" className='nav-link dropdown-toggle text-white' role="button" data-bs-toggle="dropdown" aria-expanded="false">Product</Link>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item">
 
-                                />
-                                <button className="btn btn-success me-5" type="submit"><FaSearch /></button>
-                            </form>
+                                <Link to="/product" className="nav-link text-white">Offer</Link>
+                            </li>
 
-                            <div className="d-flex ms">
+                        </ul>
+                        <form className="d-flex" role="search">
+                            <input className="form-control me-2"
+                                style={{ width: "35vw" }} type="search"
+                                placeholder="Search" aria-label="Search"
+                                onChange={userSearchItem}
 
-                                <h4 className='text-white me-2'>{currentUser && currentUser._id ? <UserProfile setLogout={setLogedUser} currentUser={currentUser} /> : <FaUserAlt />}</h4>
+                            />
+                            <button className="btn btn-success me-5" type="submit"><FaSearch /></button>
+                        </form>
 
-                                <Link to="" className=''>
-                                    <button className='btn text-white ms-5 fw-bold' onClick={() => SetPopup(true)} >{currentUser && currentUser._id ? currentUser.name : "Login/Sign"}</button>
-                                </Link>
+                        <div className="d-flex ms">
 
-                                
+                            <h4 className='text-white me-2'>{currentUser && currentUser._id ? <UserProfile setLogout={setLogedUser} currentUser={currentUser} /> : <FaUserAlt />}</h4>
 
-                                <Link to="/cartpage">
-                                    <h4 className='text-white ms-3'><FaCartPlus /></h4>
+                            <Link to="/loginRegise" className=''>
+                                <button className='btn text-white ms-5 fw-bold' >{currentUser && currentUser._id ? currentUser.name : "Login/Sign"}</button>
+                            </Link>
 
-                                </Link>
-                                <h5 className='text-white ms-2 mt-1 fw-bold'>Cart</h5>
 
-                                <Link to="/sellerRegis">
-                                    {/* <h4  className='btn text-white ms-2 fw-bold'>{currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller}/> :"Become partner"}</h4> */}
-                                    {currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller} /> : <h5 className='btn text-white ms-4 fw-bold'>Become/Seller</h5>}
 
-                                </Link>
-                            </div>
+                            <Link to="/cartpage">
+                                <h4 className='text-white ms-3'><FaCartPlus /></h4>
 
+                            </Link>
+                            <h5 className='text-white ms-2 mt-1 fw-bold'>Cart</h5>
+
+                            <Link to="/sellerRegis">
+                                {/* <h4  className='btn text-white ms-2 fw-bold'>{currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller}/> :"Become partner"}</h4> */}
+                                {currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller} /> : <h5 className='btn text-white ms-4 fw-bold'>Become/Seller</h5>}
+
+                            </Link>
                         </div>
 
                     </div>
-                </nav>
-                {/* <LoginCom popupHandler={popupHandler}/> */}
+
+                </div>
+            </nav>
+            {/* <LoginCom popupHandler={popupHandler}/> */}
 
 
-                <Modal size='md'
-                    isOpen={modal}
-                    toggle={() => SetPopup(!modal)}
-                >
+
+        
 
 
-                    <ModalHeader
-                        toggle={() => SetPopup(!modal)}
-                    >
-                    </ModalHeader>
-                    <ModalBody>
-                        {/* <!-- Pills navs --> */}
-                        <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                            <li className="nav-item" role="presentation">
-                                <a className="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
-                                    aria-controls="pills-login" aria-selected="true">Login</a>
-                            </li>
-                            <li className="nav-item" role="presentation">
-                                <a className="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
-                                    aria-controls="pills-register" aria-selected="false">Register</a>
-                            </li>
-                        </ul>
-                        {/* <!-- Pills navs --> */}
 
-                        {/* <!-- Pills content --> */}
-                        <div className="tab-content">
-                            <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                                <form>
-                                    <div className="text-center mb-3">
-                                        <p>Sign in with:</p>
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-facebook-f"></i>
-                                        </button>
+        </>
+    );
+}
 
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-google"></i>
-                                        </button>
+export default Navsection;
 
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-twitter"></i>
-                                        </button>
 
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-github"></i>
-                                        </button>
-                                    </div>
 
-                                    <p className="text-center">or:</p>
+//     <Modal size='md'
+//     isOpen={modal}
+//     toggle={() => SetPopup(!modal)}
+// >
 
-                                    {/* <!-- Email input --> */}
-                                    {/* value={login.email} */}
-                                    <div className="form-outline mb-4">
-                                        <input type="email" id="loginName" name='email' onChange={loginHandler} className="form-control" />
-                                        <label className="form-label" for="loginName">Email or username</label>
-                                    </div>
 
-                                    {/* <!-- Password input --> */}
-                                    <div className="form-outline mb-4">
-                                        <input type="password" id="loginPassword" name='password' value={login.password} onChange={loginHandler} className="form-control" />
-                                        <label className="form-label" for="loginPassword">Password</label>
-                                    </div>
+//     <ModalHeader
+//         toggle={() => SetPopup(!modal)}
+//     >
+//     </ModalHeader>
+//     <ModalBody>
+//         {/* <!-- Pills navs --> */}
+//         <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+//             <li className="nav-item" role="presentation">
+//                 <a className="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
+//                     aria-controls="pills-login" aria-selected="true">Login</a>
+//             </li>
+//             <li className="nav-item" role="presentation">
+//                 <a className="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
+//                     aria-controls="pills-register" aria-selected="false">Register</a>
+//             </li>
+//         </ul>
+//         {/* <!-- Pills navs --> */}
 
-                                    {/* <!-- 2 column grid layout --> */}
-                                    <div className="row mb-4">
-                                        <div className="col-md-6 d-flex justify-content-center">
-                                            {/* <!-- Checkbox --> */}
-                                            <div className="form-check mb-3 mb-md-0">
-                                                <input className="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                                                <label className="form-check-label" for="loginCheck"> Remember me </label>
-                                            </div>
-                                        </div>
+//         {/* <!-- Pills content --> */}
+//         <div className="tab-content">
+//             <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+//                 <form>
+//                     <div className="text-center mb-3">
+//                         <p>Sign in with:</p>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-facebook-f"></i>
+//                         </button>
 
-                                        <div className="col-md-6 d-flex justify-content-center">
-                                            {/* <!-- Simple link --> */}
-                                            <a href="#!">Forgot password?</a>
-                                        </div>
-                                    </div>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-google"></i>
+//                         </button>
 
-                                    {/* <!-- Submit button --> */}
-                                    <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-twitter"></i>
+//                         </button>
 
-                                    {/* <!-- Register buttons --> */}
-                                    <div className="text-center">
-                                        <p>Not a member? <a href="#!">Register</a></p>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                                <form onSubmit={register}>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-github"></i>
+//                         </button>
+//                     </div>
 
-                                    <div className="text-center mb-3">
-                                        <p>Sign up with:</p>
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-facebook-f"></i>
-                                        </button>
+//                     <p className="text-center">or:</p>
 
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-google"></i>
-                                        </button>
+//                     {/* <!-- Email input --> */}
+//                     {/* value={login.email} */}
+//                     <div className="form-outline mb-4">
+//                         <input type="email" id="loginName" name='email' value={userLogin.email} onChange={loginHandler} className="form-control" />
+//                         <label className="form-label" for="loginName">Email or username</label>
+//                     </div>
 
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-twitter"></i>
-                                        </button>
+//                     {/* <!-- Password input --> */}
+//                     <div className="form-outline mb-4">
+//                         <input type="password" id="loginPassword" name='password' value={userLogin.password} onChange={loginHandler} className="form-control" />
+//                         <label className="form-label" for="loginPassword">Password</label>
+//                     </div>
 
-                                        <button type="button" className="btn btn-link btn-floating mx-1">
-                                            <i className="fab fa-github"></i>
-                                        </button>
-                                    </div>
+//                     {/* <!-- 2 column grid layout --> */}
+//                     <div className="row mb-4">
+//                         <div className="col-md-6 d-flex justify-content-center">
+//                             {/* <!-- Checkbox --> */}
+//                             <div className="form-check mb-3 mb-md-0">
+//                                 <input className="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+//                                 <label className="form-check-label" for="loginCheck"> Remember me </label>
+//                             </div>
+//                         </div>
 
-                                    <p className="text-center">or:</p>
+//                         <div className="col-md-6 d-flex justify-content-center">
+//                             {/* <!-- Simple link --> */}
+//                             <a href="#!">Forgot password?</a>
+//                         </div>
+//                     </div>
 
-                                    {/* <!-- Name input --> */}
-                                    <div className="form-outline mb-4">
-                                        <input type="text" id="registerName" name='name' value={user.name} className="form-control" onChange={changeHandler} />
-                                        <label className="form-label" for="registerName">Name</label>
-                                    </div>
+//                     {/* <!-- Submit button --> */}
+//                     <button type="submit" onClick={login} className="btn btn-primary btn-block mb-4">Sign in</button>
 
-                                    {/* <!-- Username input --> */}
-                                    <div className="form-outline mb-4">
-                                        <input type="text" id="registerUsername" name='userName' value={user.userName} className="form-control" onChange={changeHandler} />
-                                        <label className="form-label" for="registerUsername">Username</label>
-                                    </div>
+//                     {/* <!-- Register buttons --> */}
+//                     <div className="text-center">
+//                         <p>Not a member? <a href="#!">Register</a></p>
+//                     </div>
+//                 </form>
+//             </div>
+//             <div className="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+//                 <form onSubmit={userRegisterHandler}>
 
-                                    {/* <!-- Email input --> */}
-                                    <div className="form-outline mb-4">
-                                        <input type="email" id="registerEmail" name='email' value={user.email} className="form-control" onChange={changeHandler} />
-                                        <label className="form-label" for="registerEmail">Email</label>
-                                    </div>
+//                     <div className="text-center mb-3">
+//                         <p>Sign up with:</p>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-facebook-f"></i>
+//                         </button>
 
-                                    {/* <!-- Password input --> */}
-                                    <div className="form-outline mb-4">
-                                        <input type="password" id="registerPassword" name='password' value={user.password} className="form-control" onChange={changeHandler} />
-                                        <label className="form-label" for="registerPassword">Password</label>
-                                    </div>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-google"></i>
+//                         </button>
 
-                                    {/* <!-- Repeat Password input --> */}
-                                    <div className="form-outline mb-4">
-                                        <input type="password" id="registerRepeatPassword" name='rePassword' value={user.rePassword} className="form-control" onChange={changeHandler} />
-                                        <label className="form-label" for="registerRepeatPassword">Repeat password</label>
-                                    </div>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-twitter"></i>
+//                         </button>
 
-                                    {/* <!-- Checkbox --> */}
-                                    <div className="form-check d-flex justify-content-center mb-4">
-                                        <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                                            aria-describedby="registerCheckHelpText" />
-                                        <label className="form-check-label" for="registerCheck">
-                                            I have read and agree to the terms
-                                        </label>
-                                    </div>
+//                         <button type="button" className="btn btn-link btn-floating mx-1">
+//                             <i className="fab fa-github"></i>
+//                         </button>
+//                     </div>
 
-                                    {/* <!-- Submit button --> */}
-                                    <button type="submit" className="btn btn-primary btn-block mb-3">Sign in</button>
-                                </form>
-                            </div>
-                        </div>
-                        {/* <!-- Pills content --> */}
-                    </ModalBody>
+//                     <p className="text-center">or:</p>
 
-                </Modal>
+//                     {/* <!-- Name input --> */}
+//                     <div className="form-outline mb-4">
+//                         <input type="text" id="registerName" name='name' value={user.name} className="form-control" onChange={changeHandler} />
+//                         <label className="form-label" for="registerName">Name</label>
+//                     </div>
 
-            </>
-        );
-    }
+//                     {/* <!-- Username input --> */}
+//                     <div className="form-outline mb-4">
+//                         <input type="text" id="registerUsername" name='userName' value={user.userName} className="form-control" onChange={changeHandler} />
+//                         <label className="form-label" for="registerUsername">Username</label>
+//                     </div>
 
-    export default Navsection;
+//                     {/* <!-- Email input --> */}
+//                     <div className="form-outline mb-4">
+//                         <input type="email" id="registerEmail" name='email' value={user.email} className="form-control" onChange={changeHandler} />
+//                         <label className="form-label" for="registerEmail">Email</label>
+//                     </div>
+
+//                     {/* <!-- Password input --> */}
+//                     <div className="form-outline mb-4">
+//                         <input type="password" id="registerPassword" name='password' value={user.password} className="form-control" onChange={changeHandler} />
+//                         <label className="form-label" for="registerPassword">Password</label>
+//                     </div>
+
+//                     {/* <!-- Repeat Password input --> */}
+//                     <div className="form-outline mb-4">
+//                         <input type="password" id="registerRepeatPassword" name='rePassword' value={user.repassword} className="form-control" onChange={changeHandler} />
+//                         <label className="form-label" for="registerRepeatPassword">Repeat password</label>
+//                     </div>
+
+//                     {/* <!-- Checkbox --> */}
+//                     <div className="form-check d-flex justify-content-center mb-4">
+//                         <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+//                             aria-describedby="registerCheckHelpText" />
+//                         <label className="form-check-label" for="registerCheck">
+//                             I have read and agree to the terms
+//                         </label>
+//                     </div>
+
+//                     {/* <!-- Submit button --> */}
+//                     <button type="submit" onClick={userRegisterHandler} className="btn btn-primary btn-block mb-3">Sign in</button>
+//                 </form>
+//             </div>
+//         </div>
+//         {/* <!-- Pills content --> */}
+//     </ModalBody>
+
+// </Modal>
