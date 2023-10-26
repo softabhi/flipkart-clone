@@ -8,10 +8,12 @@ import { BASE_URL } from '../helpers/backedurl.js';
 
 const ProducDetails = () => {
     
-    const { addProduct } = useContext(globleInfo)
+    const { addProduct,logedUser } = useContext(globleInfo)
     const [addCardData,setAddCartData] = useState();
 
     // setAddCartData(addProduct);
+    console.log(logedUser);
+    console.log(addProduct);
         
     let mainImg = document.getElementById("main-img");
     let smallImg = document.getElementsByClassName("small-img");
@@ -24,12 +26,58 @@ const ProducDetails = () => {
     //   },[])
 
    
-      const addCartFunction =()=>{
+      const addCartFunction = async()=>{
        
-        var productCart = JSON.parse(localStorage.getItem('cartData') || "[]")
-        productCart.push(addProduct)
-        localStorage.setItem('cartData', JSON.stringify(productCart));
-        console.log(addCardData)
+        let userId = logedUser._id;
+        // let produId = addProduct._id;    
+        // console.log(produId)
+
+        if(userId){
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ produId: 'React POST Request Example' })
+            };
+            fetch('http://localhost:5001/api/v2/addCart', requestOptions)
+            .then((response) => {
+                // console.log(response,11)
+                return response.json();
+            })
+            .then(data => {
+                // setProducts(data)
+                // setFilterProduct(data);
+                // setSearchItem(data)
+                console.log(data.massage,10)
+
+            })
+                // .then(response => response.json());
+                // .then(data => console.log(data));
+
+            // const response = await fetch('http://localhost:5001/api/v2/addCart', {
+            //     method: 'POST',
+            //     body: JSON.stringify(userId),
+            //     headers: {
+            //       'Content-Type': 'application/json'
+            //     }
+            //   });
+            //   const result = await response.json();
+            //   console.log(result);
+
+        //   fetch("http://localhost:5001/api/v2/addCart",userId,produId)
+        //      .then((response) => {
+        //       return response.json();
+        //      })
+        //      .then((data)=>{
+        //         console.log(data)
+        //      })
+        };
+
+       
+        // var productCart = JSON.parse(localStorage.getItem('cartData') || "[]")
+        // productCart.push(addProduct)
+        // localStorage.setItem('cartData', JSON.stringify(productCart));
+        // console.log(addCardData)
       }
 
     

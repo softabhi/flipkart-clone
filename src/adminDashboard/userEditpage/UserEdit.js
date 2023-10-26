@@ -164,7 +164,7 @@ const UserEdit = () => {
                     <button className='btn btn-primary singup' >Registration</button>
                 </div>
                 <div className="regis_form">
-                    <form action="" className='' enctype="multipart/form-data">
+                    <form action="" className='' encType="multipart/form-data">
                         <div className='d-flex flex-column'>
                             <label htmlFor="name">Name</label>
                             <input type="text" id='name' name='name' value={user.name} onChange={onChangeHandler} />

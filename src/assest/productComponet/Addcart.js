@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 
 import pic from '../images'
 import { BASE_URL } from '../../helpers/backedurl'
+import { globleInfo } from '../../App'
 
 
 const Addcart = () => {
 
     const [count, setCount] = useState(0);
     const [cartItem, setCartItem] = useState([])
+    const{logedUser} = useContext(globleInfo)
 
     const cartItems = JSON.parse(localStorage.getItem('cartData'))
     // console.log(cartItems)
@@ -53,7 +55,7 @@ const Addcart = () => {
 
                                 return (
                                     <>
-                                        <div className="row d-flex align-items-center border-bottom border-primary border-top border-primary p-2">
+                                        <div key={index} className="row d-flex align-items-center border-bottom border-primary border-top border-primary p-2">
                                             <div className="col-2 ">
                                                 <img className='img-fluid' src={`${BASE_URL}/${items.produImg}`} alt="" />
                                             </div>

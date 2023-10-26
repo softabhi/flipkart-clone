@@ -68,7 +68,7 @@ const ProductComp =  ({setCurrProduId}) => {
 
                                 return (
 
-                                    <div className="col-sm-2 col-lg-2 col-md-3">
+                                    <div key={index} className="col-sm-2 col-lg-2 col-md-3">
     
                                         <Link to="/productDetails" onClick={()=>setCurrProduId(item)}>
                                               {/* {setCurrProduId(item._id)} */}
