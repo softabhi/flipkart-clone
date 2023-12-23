@@ -1,44 +1,93 @@
 import React, { useEffect, useState,useContext } from 'react'
+import { useDispatch,useSelector } from 'react-redux';
 
 import pic from '../images'
 import { BASE_URL } from '../../helpers/backedurl'
 import { globleInfo } from '../../App'
+import { add } from '../../globalStore/cartSlice';
+import axios from 'axios';
 
 
 const Addcart = () => {
+
+    const dispatch = useDispatch();
+
+    // const cartItem = useSelector((state) => state.cart);
 
     const [count, setCount] = useState(0);
     const [cartItem, setCartItem] = useState([])
     const{logedUser} = useContext(globleInfo)
 
-    const cartItems = JSON.parse(localStorage.getItem('cartData'))
-    // console.log(cartItems)
 
-    useEffect(() => {
-        setCartItem([...cartItems])
-    }, [])
+    useEffect(()=>{
+
+        let userId = logedUser._id
+        // console.log(userId)
+        if(userId){
+            axios.get(`http://localhost:5001/api/v2/cartItems/${userId}`) 
+            .then(res=>{
+                // dispatch(add(res.data.result.cart))
+                setCartItem(res.data.result.cart)
+                console.log(res.data.massage)
+                console.log(res.data.result.cart)
+            })
+        }
+      
+
+    
+    },[])
+
+   
 
     const increasFunc = (itemId) => {
-        const targetCart = cartItem.filter((item, id) => {
-            if (itemId === id) {
-                setCount(count + 1)
-            }
-        })
+    //     const targetCart = cartItem.filter((item, id) => {
+    //         if (itemId === id) {
+    //             setCount(count + 1)
+    //         }
+        // })
 
     }
     const decreasFunc = () => {
-        setCount(count - 1)
+    //     setCount(count - 1)
     }
 
 
-    const DeletFunction = (itemId) => {
-        console.log(itemId)
-        const updatedCart = cartItem.filter((item, id) => {
-            return itemId != id
-        })
-        // const updatedCart = localStorage.removeItem('cartData[itemId]')
-        setCartItem(updatedCart)
+    const DeletFunction = async(itemId) => {
+       
+        let userId = logedUser._id;
+        let ids = {userId,itemId}
+        console.log(userId,itemId)
+
+
+        axios.post("http://localhost:5001/api/v2/deleteCartItem",ids) 
+            .then(res=>{
+                // dispatch(add(res.data.result.cart))
+                // setCartItem(res.data.result.cart)
+                console.log(res.data.massage)
+                // console.log(res.data.result.cart)
+            })
+
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ userId, itemId })
+        // };
+        // const result = await fetch("http://localhost:5001/api/v2/deleteCartItem",requestOptions) 
+        //    .then((res)=>{
+        //        return res.json();
+        //    })
+        //    .then(data=>{
+        //     console.log(data.massage)
+        //    })
+      
+
+        // const deleteData = await result.json();
+        //  console.log(deleteData,123)
+
+
     }
+
+    let totalAmount=0;
 
     return (
         <>
@@ -51,8 +100,8 @@ const Addcart = () => {
 
 
                         {
-                            cartItem.map((items, index) => {
-
+                           cartItem && cartItem.map((items, index) => {
+                                     totalAmount += Number(items.price); 
                                 return (
                                     <>
                                         <div key={index} className="row d-flex align-items-center border-bottom border-primary border-top border-primary p-2">
@@ -81,7 +130,7 @@ const Addcart = () => {
                                                 <p>{items.price}</p>
                                             </div>
                                             <div key={index} className="col-2">
-                                                <button onClick={() => DeletFunction(index)}>X</button>
+                                                <button onClick={() => DeletFunction(items._id)}>X</button>
                                             </div>
                                         </div>
                                     </>
@@ -99,10 +148,11 @@ const Addcart = () => {
 
                         <div className="row mt-5">
                             <div className="col-5">
-                                <h6>ITEM 3</h6>
+                                <h5>Items</h5>
+                                <h6>{cartItem.length}</h6>
                             </div>
                             <div className="col-5">
-                                <h6>$123</h6>
+                                <h6>{totalAmount}</h6>
                             </div>
                         </div>
 

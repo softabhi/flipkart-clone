@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react'
+import React,{ useState, useEffect } from 'react'
 import '../cssComp/Navsection.css'
 import { BASE_URL } from '../helpers/backedurl'
 import pic from '../assest/images.js'
@@ -9,7 +9,7 @@ import { FaUserAlt, FaCartPlus, FaUserCircle, FaSearch } from "react-icons/fa";
 // import LoginCom from './RegiCom.js';
 // import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import UserProfile from './UserProfile';
 import SellerProfile from './SellerProfile';
 
@@ -20,9 +20,16 @@ const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSell
 
     // const [modal, SetPopup] = useState(false);
     const [products, setProducts] = useState("");
+      const navigate = useNavigate()
     // const [filterProduct, setFilterProduct] = useState();
 
-  
+     const navigatetoPage = ()=>{
+          if(currentUser._id){
+            navigate('/cartpage')
+        }else{
+            navigate('/loginRegise')
+          }
+     }
 
 
     const fetchingData = () => {
@@ -123,8 +130,11 @@ const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSell
                                 <button className='btn text-white ms-5 fw-bold' >{currentUser && currentUser._id ? currentUser.name : "Login/Sign"}</button>
                             </Link>
 
-
-
+                           
+                            {/* <h4 className='text-white ms-3' onClick={()=>navigatetoPage()}><FaCartPlus /></h4>
+                            <h5 className='text-white ms-2 mt-1 fw-bold'>Cart</h5>  */}
+                          
+                        
                             <Link to="/cartpage">
                                 <h4 className='text-white ms-3'><FaCartPlus /></h4>
 

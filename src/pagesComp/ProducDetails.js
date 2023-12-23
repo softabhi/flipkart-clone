@@ -1,20 +1,29 @@
-import React, { useState,useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import pic from '../assest/images.js';
 import Footer from './Footer.js';
 import { AiFillStar } from 'react-icons/ai'
 import { IoIosStarHalf } from 'react-icons/io'
 import { globleInfo } from '../App.js';
 import { BASE_URL } from '../helpers/backedurl.js';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import { add } from '../globalStore/cartSlice.js';
+
 
 const ProducDetails = () => {
+
     
-    const { addProduct,logedUser } = useContext(globleInfo)
-    const [addCardData,setAddCartData] = useState();
+    const { addProduct, logedUser } = useContext(globleInfo)
+    const [addCardData, setAddCartData] = useState();
+    const [currUserData,setCurrUserData] = useState("")
+    const dispatch = useDispatch();
+
 
     // setAddCartData(addProduct);
-    console.log(logedUser);
-    console.log(addProduct);
-        
+    // console.log(logedUser);
+    // console.log(addProduct);
+    
+
     let mainImg = document.getElementById("main-img");
     let smallImg = document.getElementsByClassName("small-img");
 
@@ -22,93 +31,83 @@ const ProducDetails = () => {
     //  console.log(addProduct);
 
     //   useEffect(()=>{
-        
+
     //   },[])
-
    
-      const addCartFunction = async()=>{
-       
-        let userId = logedUser._id;
-        // let produId = addProduct._id;    
-        // console.log(produId)
+   
 
-        if(userId){
+    const addCartFunction =  () => {
+        
+        // console.log("produId")   
+
+        dispatch(add(addProduct))
+
+        if (logedUser._id && addProduct._id) {
+            let userId = logedUser._id;
+            let produId = {product:addProduct._id};
 
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ produId: 'React POST Request Example' })
+                body: JSON.stringify({ userId, produId })
             };
             fetch('http://localhost:5001/api/v2/addCart', requestOptions)
-            .then((response) => {
-                // console.log(response,11)
-                return response.json();
-            })
-            .then(data => {
-                // setProducts(data)
-                // setFilterProduct(data);
-                // setSearchItem(data)
-                console.log(data.massage,10)
+                .then((response) => {
+                    // console.log(response,11)
+                    return response.json();
+                })
+                .then(data => {
+                    // setProducts(data)
+                    // setFilterProduct(data);
+                    // setSearchItem(data)
+                    console.log(data.massage, 10)
+                    alert(data.massage)
 
-            })
-                // .then(response => response.json());
-                // .then(data => console.log(data));
+                })
+          
+        }else{
+            alert("please loging first for item add")
+            // navigation("/loginRegise")
+            // navigation("/loginRegise")
+            Navigate("/loginRegise")
+        }
 
-            // const response = await fetch('http://localhost:5001/api/v2/addCart', {
-            //     method: 'POST',
-            //     body: JSON.stringify(userId),
-            //     headers: {
-            //       'Content-Type': 'application/json'
-            //     }
-            //   });
-            //   const result = await response.json();
-            //   console.log(result);
 
-        //   fetch("http://localhost:5001/api/v2/addCart",userId,produId)
-        //      .then((response) => {
-        //       return response.json();
-        //      })
-        //      .then((data)=>{
-        //         console.log(data)
-        //      })
-        };
-
-       
         // var productCart = JSON.parse(localStorage.getItem('cartData') || "[]")
         // productCart.push(addProduct)
         // localStorage.setItem('cartData', JSON.stringify(productCart));
         // console.log(addCardData)
-      }
+    }
 
-    
+
 
     const [singImg, SetImg] = useState(pic.img1);
-    
-
-//      const getSingleProduDetails =  ()=>{
-//       let result = fetch(`${BASE_URL}/api/v2/singleproduct/${addCurtProduId}`)
-//         .then((data)=>{
-//             return data.json();
-//         })
-//         .then((produtData)=>{
-//             // console.log(produtData)
-//         //    setSingProduData(produtData)
-//         return produtData;
-//         })
-
-//         setSingProduData(result);
-//         // console.log(result)
-//         // console.log("monu")
-//   }
-   
 
 
-//      useEffect(()=>{
-//         getSingleProduDetails();
-        
-//      },[addCurtProduId])
+    //      const getSingleProduDetails =  ()=>{
+    //       let result = fetch(`${BASE_URL}/api/v2/singleproduct/${addCurtProduId}`)
+    //         .then((data)=>{
+    //             return data.json();
+    //         })
+    //         .then((produtData)=>{
+    //             // console.log(produtData)
+    //         //    setSingProduData(produtData)
+    //         return produtData;
+    //         })
 
- 
+    //         setSingProduData(result);
+    //         // console.log(result)
+    //         // console.log("monu")
+    //   }
+
+
+
+    //      useEffect(()=>{
+    //         getSingleProduDetails();
+
+    //      },[addCurtProduId])
+
+
 
     return (
         <>

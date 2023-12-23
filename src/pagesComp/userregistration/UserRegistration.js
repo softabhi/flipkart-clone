@@ -120,7 +120,7 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
     }
 
 
-  
+
 
 
 
@@ -244,7 +244,7 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
                 </div>
 
 
-            
+
 
             </div>
         </>

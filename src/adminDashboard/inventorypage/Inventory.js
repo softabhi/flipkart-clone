@@ -60,8 +60,6 @@ const Inventory = () => {
         } else {
             alert("something wrong")
         }
-
-
     }
 
 

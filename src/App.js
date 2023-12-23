@@ -2,6 +2,8 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
+import { Provider } from 'react-redux';
+
 import Navsection from './pagesComp/Navsection';
 import Home from './pagesComp/Home';
 // import Product from './pagesComp/Product';
@@ -20,6 +22,7 @@ import SingleUser from './adminDashboard/singleUserPage/SingleUser';
 import UserEdit from './adminDashboard/userEditpage/UserEdit';
 import Inventory from './adminDashboard/inventorypage/Inventory';
 import UserEdition from './adminDashboard/usersedit/UserEdition';
+import store from './globalStore/MainStore';
 
 
 export const globleInfo = createContext();
@@ -46,9 +49,13 @@ function App() {
   }
   return (
 
-
-    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem,addProduct,logedUser }}>
+    
+    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem, addProduct, logedUser }}>
+    
       <>
+      <Provider store={store}>
+
+
         {/* <UserProfile/> */}
         {/* <LoginCom/> */}
         {/* <Dashboard/> */}
@@ -64,20 +71,20 @@ function App() {
           />, <Home />] : <UserRegistration setLogedUser={setLogedUser} />} />
 
 
-          <Route path="/SellerRegis" element={logedSeller && logedSeller._id ? <Dashboard /> : <SellerRegis setLogedSeller={setLogedSeller} />} />       
-          
-           <Route path="/" element={[<Navsection currentUser={logedUser}
+          <Route path="/SellerRegis" element={logedSeller && logedSeller._id ? <Dashboard /> : <SellerRegis setLogedSeller={setLogedSeller} />} />
+
+          <Route path="/" element={[<Navsection currentUser={logedUser}
             // setLogout={setLogout} 
             setLogedUser={setLogedUser}
             setLogoutSeller={setLogedSeller}
             currentLogedSeller={logedSeller}
             setSearchItem={setSearchItem}
-            
+
           />, <Home setCurrProduId={setCurrProduId} />]} />
 
 
           {/* <Route path="/sellerRegis" element={<SellerRegi/>} /> */}
-          
+
           {/* <Route path="/product" element={<Product />} /> */}
 
 
@@ -94,10 +101,11 @@ function App() {
 
 
 
-        /* adime routes */
+        {/* adime routes */}
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
-       
+
+        </Provider>
       </>
     </globleInfo.Provider>
   );

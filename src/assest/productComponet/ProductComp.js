@@ -3,8 +3,11 @@ import React, { useEffect, useState, useContext } from 'react'
 // import axios from 'axios'
 import { BASE_URL } from '../../helpers/backedurl.js';
 import { Link } from 'react-router-dom';
+import { RotatingLines} from 'react-loader-spinner'
 // import clothList from './allProductData/ClothProdu.js';
 import { globleInfo } from '../../App.js';
+
+
 const ProductComp =  ({setCurrProduId}) => {
     const { searchItem } = useContext(globleInfo)
     //     const [products, setProducts] = useState("");
@@ -12,7 +15,16 @@ const ProductComp =  ({setCurrProduId}) => {
 
      const [itemList, setItemList] = useState(5);
 
-     
+     const [loading ,setLoading] = useState()
+      
+    
+
+       useEffect(()=>{
+         setLoading(searchItem)
+       },[searchItem])
+
+
+       console.log(loading)
 
 
     //     const fetchingData = () => {
@@ -56,13 +68,18 @@ const ProductComp =  ({setCurrProduId}) => {
 
     // setCurrProduId("danoo")
     return (
+        
+        
+       
 
         <>
+           { loading?
             <div className="container">
                 <div className="row">
-
+                   
+                   
                     {
-                        searchItem && searchItem?.map((item, index) => {
+                        loading && loading?.map((item, index) => {
 
                             if(index<=itemList){
 
@@ -97,7 +114,7 @@ const ProductComp =  ({setCurrProduId}) => {
 
                         }
 
-                        )
+                        ) 
 
                     }
 
@@ -110,6 +127,7 @@ const ProductComp =  ({setCurrProduId}) => {
                </div>
 
             </div>
+            : <div className='my-5' style={{"display":"flex","justify-content":"center",}}><RotatingLines/></div>  }
         </>
     )
 }
