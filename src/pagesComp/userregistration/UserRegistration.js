@@ -76,17 +76,19 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
                 .then(rep => {
                     Swal.fire({
                         title: rep.data,
-                        text: "You clicked the button!",
+                        text: "Thank You",
                         icon: "success"
                       });
+
+                      alert(rep.data.massage);
                 });
         } else {
             Swal.fire({
                 title: "please enter all field",
-                text: "You clicked the button!",
-                icon: "success"
+                text: "Thank You!",
+                icon: "error"
               });
-            // alert("please enter all field");
+           
         }
 
 
@@ -113,12 +115,12 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
         e.preventDefault();
         axios.post(`${BASE_URL}/api/v1/login`, userLogin)
             .then(res => {
-                // alert(res.data.message)
+                alert(res.data.message)
                 // console.log(res)
                 // setLogedUser(res.data.user)
                 Swal.fire({
                     title: res.data.massage,
-                    text: "You clicked the button!",
+                    text: "Thank You!",
                     icon: "success"
                   });
                 // console.log(res.data.user)

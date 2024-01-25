@@ -125,7 +125,7 @@ const Addcart = ({setCartCount}) => {
                 Swal.fire({
                     title: response.data.massage,
                     text: "You clicked the button!",
-                    icon: "success"
+                    icon: "warning"
                   });
             })
            
