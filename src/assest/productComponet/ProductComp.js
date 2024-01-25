@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import  '../../cssComp/productsCom.css'
 // import pic from '../images.js';
 // import axios from 'axios'
 import { BASE_URL } from '../../helpers/backedurl.js';
@@ -13,7 +14,7 @@ const ProductComp =  ({setCurrProduId}) => {
     //     const [products, setProducts] = useState("");
     //     const [filterProduct, setFilterProduct] = useState();
 
-     const [itemList, setItemList] = useState(5);
+     const [itemList, setItemList] = useState(11);
 
      const [loading ,setLoading] = useState()
       
@@ -95,7 +96,7 @@ const ProductComp =  ({setCurrProduId}) => {
                                                 < div className="imgDiv" />
     
                                                 <img src={`${BASE_URL}/${item.produImg}`}
-                                                    className="card-img-top img-fluid"
+                                                    className="card-img-top img-fluid card-img"
                                                     alt="..." />
     
                                             </div>

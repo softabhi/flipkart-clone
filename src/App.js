@@ -36,6 +36,7 @@ function App() {
   const [userId, setUserId] = useState("");
   const [searchItem, setSearchItem] = useState();
   const [addProduct, setCurrProduId] = useState();
+  const [cartCount, setCartCount] = useState(0);
   // const [userIcon, setUserIcon] = useState();
 
   // setUserIcon()
@@ -79,6 +80,7 @@ function App() {
             setLogoutSeller={setLogedSeller}
             currentLogedSeller={logedSeller}
             setSearchItem={setSearchItem}
+            cartCount={cartCount}
 
           />, <Home setCurrProduId={setCurrProduId} />]} />
 
@@ -89,7 +91,7 @@ function App() {
 
 
           <Route path="/productDetails" element={<ProducDetails />} />
-          <Route path="/cartpage" element={<Addcart />} />
+          <Route path="/cartpage" element={<Addcart setCartCount={setCartCount}/>} />
 
           {/* <Route path="/addproduct" element={<AddProduct/>} /> */}
 

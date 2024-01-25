@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../cssComp/Navsection.css'
 import { BASE_URL } from '../helpers/backedurl'
 import pic from '../assest/images.js'
@@ -12,24 +12,27 @@ import { FaUserAlt, FaCartPlus, FaUserCircle, FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'
 import UserProfile from './UserProfile';
 import SellerProfile from './SellerProfile';
+import { useSelector } from 'react-redux/es/hooks/useSelector.js'
 
 
 
 
-const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSeller, setLogedSeller, setLogoutSeller, setCurrProduId }) => {
+const Navsection = ({cartCount, currentUser, setLogedUser, setSearchItem, currentLogedSeller, setLogedSeller, setLogoutSeller, setCurrProduId }) => {
 
     // const [modal, SetPopup] = useState(false);
     const [products, setProducts] = useState("");
-      const navigate = useNavigate()
-    // const [filterProduct, setFilterProduct] = useState();
+    const navigate = useNavigate()
+//    const cartCount = useSelector(state=>state.cart);
 
-     const navigatetoPage = ()=>{
-          if(currentUser._id){
+    const navigatetoPage = () => {
+        console.log("mama")
+
+        if (currentUser && currentUser._id) {
             navigate('/cartpage')
-        }else{
+        } else {
             navigate('/loginRegise')
-          }
-     }
+        }
+    }
 
 
     const fetchingData = () => {
@@ -130,16 +133,23 @@ const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSell
                                 <button className='btn text-white ms-5 fw-bold' >{currentUser && currentUser._id ? currentUser.name : "Login/Sign"}</button>
                             </Link>
 
-                           
-                            {/* <h4 className='text-white ms-3' onClick={()=>navigatetoPage()}><FaCartPlus /></h4>
-                            <h5 className='text-white ms-2 mt-1 fw-bold'>Cart</h5>  */}
-                          
-                        
-                            <Link to="/cartpage">
+
+
+
+                            <button className='cart_btn' onClick={() => navigatetoPage()}>
+
+                                <div>
+                                    <i class="fas fa-shopping-cart "></i>
+                                    <span
+                                        class="badge bg-danger cart_count"
+                                       >{currentUser ? cartCount : "0"}</span>
+                                </div>
+                            </button>
+                            {/* <Link to="/cartpage">
                                 <h4 className='text-white ms-3'><FaCartPlus /></h4>
 
                             </Link>
-                            <h5 className='text-white ms-2 mt-1 fw-bold'>Cart</h5>
+                            <h5 className='text-white ms-2 mt-1 fw-bold'>Cart</h5> */}
 
                             <Link to="/sellerRegis">
                                 {/* <h4  className='btn text-white ms-2 fw-bold'>{currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller}/> :"Become partner"}</h4> */}
@@ -151,12 +161,12 @@ const Navsection = ({ currentUser, setLogedUser, setSearchItem, currentLogedSell
                     </div>
 
                 </div>
-            </nav>
+            </nav >
             {/* <LoginCom popupHandler={popupHandler}/> */}
 
 
 
-        
+
 
 
 

@@ -4,51 +4,108 @@ import { useDispatch,useSelector } from 'react-redux';
 import pic from '../images'
 import { BASE_URL } from '../../helpers/backedurl'
 import { globleInfo } from '../../App'
-import { add } from '../../globalStore/cartSlice';
+import { remove } from '../../globalStore/cartSlice';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
-const Addcart = () => {
 
-    const dispatch = useDispatch();
+const Addcart = ({setCartCount}) => {
+
+    
 
     // const cartItem = useSelector((state) => state.cart);
 
     const [count, setCount] = useState(0);
     const [cartItem, setCartItem] = useState([])
     const{logedUser} = useContext(globleInfo)
+    
+    // const cartStore = useSelector(state=>state.cart)
+    // const dispatch = useDispatch();
+
 
 
     useEffect(()=>{
 
-        let userId = logedUser._id
+    //    setCartItem(cartStore)
         // console.log(userId)
-        if(userId){
+        if(logedUser && logedUser._id){
+            let userId = logedUser._id
             axios.get(`http://localhost:5001/api/v2/cartItems/${userId}`) 
             .then(res=>{
-                // dispatch(add(res.data.result.cart))
-                setCartItem(res.data.result.cart)
-                console.log(res.data.massage)
-                console.log(res.data.result.cart)
+                setCartItem(res.data.result)
+                // console.log(res.data.massage)
+                // console.log(res.data.result)
             })
+
+            setCartCount(cartItem.length)
         }
       
 
     
-    },[])
+    },[cartItem, logedUser])
 
    
 
     const increasFunc = (itemId) => {
-    //     const targetCart = cartItem.filter((item, id) => {
-    //         if (itemId === id) {
-    //             setCount(count + 1)
-    //         }
-        // })
+        if (logedUser._id && itemId) {
+            let userId = logedUser._id;
+            // let produId = {product:addProduct._id};
 
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, itemId })
+            };
+            fetch('http://localhost:5001/api/v2/increaseCartItem', requestOptions)
+                .then((response) => {
+                    // console.log(response,11)
+                    return response.json();
+                })
+                .then(data => {
+                    // setProducts(data)
+                    // setFilterProduct(data);
+                    // setSearchItem(data)
+                    console.log(data.massage, 10)
+                    Swal.fire({
+                        title: data.massage,
+                        text: "You clicked the button!",
+                        icon: "success"
+                      });
+
+                })
+          
+        }
     }
-    const decreasFunc = () => {
-    //     setCount(count - 1)
+    const decreasFunc = (itemId) => {
+        if (logedUser._id && itemId) {
+            let userId = logedUser._id;
+            // let produId = {product:addProduct._id};
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, itemId })
+            };
+            fetch('http://localhost:5001/api/v2/decreaseCartItem', requestOptions)
+                .then((response) => {
+                    // console.log(response,11)
+                    return response.json();
+                })
+                .then(data => {
+                    // setProducts(data)
+                    // setFilterProduct(data);
+                    // setSearchItem(data)
+                    console.log(data.massage, 10)
+                    Swal.fire({
+                        title: data.massage,
+                        text: "You clicked the button!",
+                        icon: "success"
+                      });
+
+                })
+          
+        }
     }
 
 
@@ -58,32 +115,21 @@ const Addcart = () => {
         let ids = {userId,itemId}
         console.log(userId,itemId)
 
+        // dispatch(remove(itemId))
 
         axios.post("http://localhost:5001/api/v2/deleteCartItem",ids) 
-            .then(res=>{
+            .then(response=>{
                 // dispatch(add(res.data.result.cart))
                 // setCartItem(res.data.result.cart)
-                console.log(res.data.massage)
-                // console.log(res.data.result.cart)
+                // return response.json();
+                Swal.fire({
+                    title: response.data.massage,
+                    text: "You clicked the button!",
+                    icon: "success"
+                  });
             })
-
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ userId, itemId })
-        // };
-        // const result = await fetch("http://localhost:5001/api/v2/deleteCartItem",requestOptions) 
-        //    .then((res)=>{
-        //        return res.json();
-        //    })
-        //    .then(data=>{
-        //     console.log(data.massage)
-        //    })
-      
-
-        // const deleteData = await result.json();
-        //  console.log(deleteData,123)
-
+           
+            
 
     }
 
@@ -100,13 +146,13 @@ const Addcart = () => {
 
 
                         {
-                           cartItem && cartItem.map((items, index) => {
-                                     totalAmount += Number(items.price); 
+                           cartItem && cartItem?.map((items, index) => {
+                                     totalAmount += Number(items.productPrice); 
                                 return (
-                                    <>
+                                    
                                         <div key={index} className="row d-flex align-items-center border-bottom border-primary border-top border-primary p-2">
                                             <div className="col-2 ">
-                                                <img className='img-fluid' src={`${BASE_URL}/${items.produImg}`} alt="" />
+                                                <img className='img-fluid' src={`${BASE_URL}/${items.productImg}`} alt="" />
                                             </div>
                                             <div className="col-2">
                                                 <h6>{items.productName}</h6>
@@ -115,25 +161,25 @@ const Addcart = () => {
                                             <div className="col-4">
                                                 <div className="row">
                                                     <div className="col-3 ">
-                                                        <button onClick={decreasFunc}>-</button>
+                                                        <button onClick={()=>decreasFunc(items._id)}>-</button>
 
                                                     </div>
                                                     <div className="col-4 border border-primary">
-                                                        <p>{count}</p>
+                                                        <p>{items.productQty}</p>
                                                     </div>
                                                     <div key={index} className="col-3 ">
-                                                        <button onClick={() => increasFunc(index)}>+</button>
+                                                        <button onClick={() => increasFunc(items._id)}>+</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-2">
-                                                <p>{items.price}</p>
+                                                <p>{items.productPrice}</p>
                                             </div>
                                             <div key={index} className="col-2">
                                                 <button onClick={() => DeletFunction(items._id)}>X</button>
                                             </div>
                                         </div>
-                                    </>
+                                    
                                 )
                             })
                         }

@@ -8,6 +8,7 @@ import { BASE_URL } from '../helpers/backedurl.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { add } from '../globalStore/cartSlice.js';
+import Swal from 'sweetalert2';
 
 
 const ProducDetails = () => {
@@ -40,16 +41,18 @@ const ProducDetails = () => {
         
         // console.log("produId")   
 
-        dispatch(add(addProduct))
+        
 
         if (logedUser._id && addProduct._id) {
             let userId = logedUser._id;
-            let produId = {product:addProduct._id};
+            // let produId = {product:addProduct._id};
+            
+            dispatch(add(addProduct))
 
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, produId })
+                body: JSON.stringify({ userId, addProduct })
             };
             fetch('http://localhost:5001/api/v2/addCart', requestOptions)
                 .then((response) => {
@@ -61,7 +64,12 @@ const ProducDetails = () => {
                     // setFilterProduct(data);
                     // setSearchItem(data)
                     console.log(data.massage, 10)
-                    alert(data.massage)
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success"
+                      });
+                    // alert(data.massage)
 
                 })
           

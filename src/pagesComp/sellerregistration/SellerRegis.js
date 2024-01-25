@@ -4,6 +4,8 @@ import './seller.css'
 import { Link, json } from 'react-router-dom';
 import { BASE_URL } from '../../helpers/backedurl';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+
 
 
 const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
@@ -56,7 +58,13 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
         if (name && email && (password === repassword)) {
             axios.post(`${BASE_URL}/api/v1/sellerRegistration`, formData)
-                .then(rep => alert(rep.data));
+                .then(res => {
+                    Swal.fire({
+                        title: res.data,
+                        text: "Thank You",
+                        icon: "success"
+                      });
+                });
         } else {
             alert("please enter all field");
         }
@@ -101,7 +109,12 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
         // axios.post("http://localhost:5001/api/v1/sellerLogin", userLogin)
         axios.post(`${BASE_URL}/api/v1/sellerLogin`, userLogin)
             .then(res => {
-                alert(res.data.message)
+                Swal.fire({
+                    title: res.data.massage,
+                    text: "Thank You",
+                    icon: "success"
+                  });
+                // alert(res.data.message)
                 setLogedSeller(res.data.user)
                 // setUserIcon(res.data.user)   
                 localStorage.setItem('userdata',res.data.webToken);
