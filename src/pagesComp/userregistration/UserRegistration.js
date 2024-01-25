@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { BASE_URL } from '../../helpers/backedurl';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 // import { Jwt } from 'jsonwebtoken';
 
 
@@ -72,9 +73,20 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
 
         if (name && userName && email && mobileNumber && address && (password === repassword)) {
             axios.post(`${BASE_URL}/api/v1/registration`, formData)
-                .then(rep => alert(rep.data));
+                .then(rep => {
+                    Swal.fire({
+                        title: rep.data,
+                        text: "You clicked the button!",
+                        icon: "success"
+                      });
+                });
         } else {
-            alert("please enter all field");
+            Swal.fire({
+                title: "please enter all field",
+                text: "You clicked the button!",
+                icon: "success"
+              });
+            // alert("please enter all field");
         }
 
 
@@ -101,9 +113,14 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
         e.preventDefault();
         axios.post(`${BASE_URL}/api/v1/login`, userLogin)
             .then(res => {
-                alert(res.data.message)
+                // alert(res.data.message)
                 // console.log(res)
-                setLogedUser(res.data.user)
+                // setLogedUser(res.data.user)
+                Swal.fire({
+                    title: res.data.massage,
+                    text: "You clicked the button!",
+                    icon: "success"
+                  });
                 // console.log(res.data.user)
                 // setUserIcon(res.data.user)
 
