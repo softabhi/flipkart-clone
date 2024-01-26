@@ -25,7 +25,7 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
         email: "",
         password: "",
         repassword: "",
-        role: "",
+       
         profileImg: ""
     });
 
@@ -46,20 +46,21 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
 
         const formData = new FormData();
 
-        const { name, email, password, repassword, role } = user;
+        const { name, email, password, repassword } = user;
 
         formData.append('name', user.name)
 
         formData.append('email', user.email)
         formData.append('password', user.password)
         formData.append('repassword', user.repassword)
-        formData.append('role', user.role)
+       
         formData.append('profileImg', imagePic)
 
         if (name && email && (password === repassword)) {
-            axios.post(`${BASE_URL}/api/v1/sellerRegistration`, formData)
+            // axios.post(`${BASE_URL}/api/v1/sellerRegistration`, formData)
+            axios.post('http://localhost:5001/api/v1/sellerRegistration', formData)
                 .then(res => {
-                    Swal.fire({
+                    Swal.fire({ 
                         title: res.data,
                         text: "Thank You",
                         icon: "success"

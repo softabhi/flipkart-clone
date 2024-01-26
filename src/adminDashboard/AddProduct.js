@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import axios from 'axios';
 import { BASE_URL } from '../helpers/backedurl';
+import Swal from 'sweetalert2';
 
 const AddProduct = () => {
 
@@ -40,8 +41,15 @@ const AddProduct = () => {
         console.log(formData);
 
         if (productName && price && discount) {
-            axios.post(`${BASE_URL}/api/v2/addProduct`, formData)
-                .then(rep => alert(rep.data));
+            // axios.post(`${BASE_URL}/api/v2/addProduct`, formData)
+            axios.post('http://localhost:5001/api/v2/addProduct', formData)
+                .then(res => {
+                    Swal.fire({
+                        title: res.data,
+                        text: "Thank You",
+                        icon: "success"
+                      });
+                });
 
                  
                 setProduct({
@@ -52,7 +60,11 @@ const AddProduct = () => {
         
                 });
         } else {
-            alert("please enter all field");
+            Swal.fire({
+                title: "Please Enter All Field",
+                text: "Thank You",
+                icon: "success"
+              });
         }
 
 

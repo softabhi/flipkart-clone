@@ -8,6 +8,7 @@ import { productsGetFunction } from '../singleUserPage/SingleUser'
 import { Link } from 'react-router-dom'
 import { globleInfo } from '../../App'
 import { BASE_URL } from '../../helpers/backedurl'
+import Swal from 'sweetalert2'
 
 
 
@@ -58,6 +59,11 @@ const Inventory = () => {
         if (deleteData) {
             fetchUsers();
         } else {
+            Swal.fire({
+                title: "something wrong",
+                text: "Thank You",
+                icon: "success"
+              });
             alert("something wrong")
         }
     }
