@@ -41,8 +41,9 @@ const AddProduct = () => {
         console.log(formData);
 
         if (productName && price && discount) {
-            // axios.post(`${BASE_URL}/api/v2/addProduct`, formData)
-            axios.post('http://localhost:5001/api/v2/addProduct', formData)
+            
+            // axios.post('http://localhost:5001/api/v2/addProduct', formData)
+            axios.post(`${BASE_URL}/api/v2/addProduct`, formData)
                 .then(res => {
                     Swal.fire({
                         title: res.data,

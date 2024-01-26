@@ -57,8 +57,8 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
         formData.append('profileImg', imagePic)
 
         if (name && email && (password === repassword)) {
-            // axios.post(`${BASE_URL}/api/v1/sellerRegistration`, formData)
-            axios.post('http://localhost:5001/api/v1/sellerRegistration', formData)
+            // axios.post('http://localhost:5001/api/v1/sellerRegistration', formData)
+            axios.post(`${BASE_URL}/api/v1/sellerRegistration`, formData)
                 .then(res => {
                     Swal.fire({ 
                         title: res.data,
