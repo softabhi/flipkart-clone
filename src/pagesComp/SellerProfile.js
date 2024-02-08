@@ -1,12 +1,15 @@
-import React, { useRef, useState,useEffect} from 'react'
+import React, { useRef, useState,useEffect, useContext} from 'react'
 import '../cssComp/UserProfi.css'
 import userImg from '../assest/homeProdu/photo1.jpg'
+import { globleInfo } from '../App'
+
 
 
 
 const SellerProfile = ({ setLogoutSeller,currentLogedSeller }) => {
     const [open, setOpen] = useState(false);
     const [profileImg, setProfileImg] = useState();
+    const {logedSeller} = useContext(globleInfo)
 // console.log(open)
 
     const menuItem = ["Name", "Num"];
@@ -33,14 +36,14 @@ const SellerProfile = ({ setLogoutSeller,currentLogedSeller }) => {
     // }
 
     // console.log("monuoo");
-    // console.log(setLogoutSeller);
+    console.log(logedSeller);
 
     return (
         <div className='logout me-4'>
             <div>
                 <img 
                 ref={imgRef}
-                src={`http://localhost:5001/${currentLogedSeller.profileImg}`} 
+                src={`http://localhost:5001/${logedSeller.profileImg}`} 
                 alt="" 
                 className='pictu ms-5' 
                 onClick={ () => setOpen(!open)}

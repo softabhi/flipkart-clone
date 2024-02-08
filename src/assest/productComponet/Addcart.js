@@ -1,3 +1,4 @@
+import '../../cssComp/addcart.css'
 import React, { useEffect, useState,useContext } from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 
@@ -7,6 +8,7 @@ import { globleInfo } from '../../App'
 import { remove } from '../../globalStore/cartSlice';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 
 
@@ -146,9 +148,9 @@ const Addcart = ({setCartCount}) => {
 
 
                         {
-                           cartItem && cartItem?.map((items, index) => {
-                                     totalAmount += Number(items.productPrice); 
-                                return (
+                          cartItem && cartItem?.map((items, index) => {
+                                      totalAmount += Number(items.productPrice); 
+                             return (
                                     
                                         <div key={index} className="row d-flex align-items-center border-bottom border-primary border-top border-primary p-2">
                                             <div className="col-2 ">
@@ -160,14 +162,14 @@ const Addcart = ({setCartCount}) => {
                                             </div>
                                             <div className="col-4">
                                                 <div className="row">
-                                                    <div className="col-3 ">
-                                                        <button onClick={()=>decreasFunc(items._id)}>-</button>
+                                                    <div className="col-3 decrease_btn">
+                                                        <button id='decBtn' onClick={()=>decreasFunc(items._id)}>-</button>
 
                                                     </div>
-                                                    <div className="col-4 border border-primary">
-                                                        <p>{items.productQty}</p>
+                                                    <div className="col-4 border border-primary ">
+                                                        <p className='qty'>{items.productQty}</p>
                                                     </div>
-                                                    <div key={index} className="col-3 ">
+                                                    <div key={index} className="col-3 increase_btn">
                                                         <button onClick={() => increasFunc(items._id)}>+</button>
                                                     </div>
                                                 </div>
@@ -175,7 +177,7 @@ const Addcart = ({setCartCount}) => {
                                             <div className="col-2">
                                                 <p>{items.productPrice}</p>
                                             </div>
-                                            <div key={index} className="col-2">
+                                            <div key={index} className="col-2 rem_btn">
                                                 <button onClick={() => DeletFunction(items._id)}>X</button>
                                             </div>
                                         </div>
@@ -249,7 +251,9 @@ const Addcart = ({setCartCount}) => {
                         <div className="row">
                             <div className="col-lg-2"></div>
                             <div className="col-lg-8 mt-5" >
-                                <button className='btn btn-black' style={{ width: "100%" }}>CHECKOUT</button>
+                              <Link to="/ordersummary">
+                              <button className='btn btn-black' style={{ width: "100%" }}>CHECKOUT</button>
+                              </Link>
                             </div>
                             <div className="col-lg-2"></div>
                         </div>

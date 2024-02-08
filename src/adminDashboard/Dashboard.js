@@ -5,6 +5,7 @@ import './dashboardStyle.css'
 import DataCard from './dataCard'
 import Chart from './Chart'
 import TableData from './TableData'
+import SellerProfile from '../pagesComp/SellerProfile';
 // import AddProduct from './AddProduct'
 
 
@@ -17,6 +18,7 @@ const Dashboard = () => {
              <div className="col">
                 <h2>Wel Come..... Merchant</h2>
              </div>
+             <SellerProfile/>
            </div>
         </div>
 

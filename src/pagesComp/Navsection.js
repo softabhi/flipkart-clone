@@ -31,6 +31,7 @@ const Navsection = ({cartCount, currentUser, setLogedUser, setSearchItem, curren
             navigate('/cartpage')
         } else {
             navigate('/loginRegise')
+            // navigate('/cartpage')
         }
     }
 
@@ -67,13 +68,7 @@ const Navsection = ({cartCount, currentUser, setLogedUser, setSearchItem, curren
         setSearchItem(products.filter(f => f.productName.toLowerCase().includes(e.target.value)))
     }
 
-    // setCurrProduId("data")
-
-    // const userInputItem = ()=>{
-
-    // }
-
-    // console.log(searchItem);
+  
 
     return (
         <>

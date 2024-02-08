@@ -115,9 +115,9 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
         e.preventDefault();
         axios.post(`${BASE_URL}/api/v1/login`, userLogin)
             .then(res => {
-                alert(res.data.message)
+                // alert(res.data.message)
                 // console.log(res)
-                // setLogedUser(res.data.user)
+                setLogedUser(res.data.user)
                 Swal.fire({
                     title: res.data.massage,
                     text: "Thank You!",
@@ -126,13 +126,14 @@ const UserRegistration = ({ setLogedUser, setUserIcon }) => {
                 // console.log(res.data.user)
                 // setUserIcon(res.data.user)
 
+                localStorage.setItem('userToken',res.data.webToken)
                 navigation("/")
 
             }
             );
 
 
-        // localStorage.setItem('userToken',webToken)
+       
         setUserLogin({ email: "", password: "" });
         // console.log(userLogin)
         // console.log("mona")

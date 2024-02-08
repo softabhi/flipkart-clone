@@ -23,6 +23,12 @@ import UserEdit from './adminDashboard/userEditpage/UserEdit';
 import Inventory from './adminDashboard/inventorypage/Inventory';
 import UserEdition from './adminDashboard/usersedit/UserEdition';
 import store from './globalStore/MainStore';
+import Ordersummarypage from './pagesComp/orderpage/orderSummaryPage';
+import Orders from './adminDashboard/customerOrders/Orders';
+
+
+
+
 
 
 export const globleInfo = createContext();
@@ -51,7 +57,7 @@ function App() {
   return (
 
     
-    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem, addProduct, logedUser }}>
+    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem, addProduct, logedUser,logedSeller }}>
     
       <>
       <Provider store={store}>
@@ -87,9 +93,10 @@ function App() {
 
           {/* <Route path="/sellerRegis" element={<SellerRegi/>} /> */}
 
-          {/* <Route path="/product" element={<Product />} /> */}
+          <Route path="/ordersummary" element={<Ordersummarypage/>} />
+          <Route path="/orders" element={<Orders/>} />
 
-
+          
           <Route path="/productDetails" element={<ProducDetails />} />
           <Route path="/cartpage" element={<Addcart setCartCount={setCartCount}/>} />
 

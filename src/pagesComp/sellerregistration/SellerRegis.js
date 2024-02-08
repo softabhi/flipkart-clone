@@ -110,11 +110,20 @@ const SellerRegis = ({ setLogedSeller, setUserIcon }) => {
         // axios.post("http://localhost:5001/api/v1/sellerLogin", userLogin)
         axios.post(`${BASE_URL}/api/v1/sellerLogin`, userLogin)
             .then(res => {
-                Swal.fire({
-                    title: res.data.massage,
-                    text: "Thank You",
-                    icon: "success"
-                  });
+                if(res.data.user){
+                    Swal.fire({
+                        title: res.data.massage,
+                        text: "Thank You",
+                        icon: "success"
+                      }); 
+                }else{
+                    Swal.fire({
+                        title: res.data.massage,
+                        text: "Thank You",
+                        icon: "error"
+                      });
+                }
+               
                 // alert(res.data.message)
                 setLogedSeller(res.data.user)
                 // setUserIcon(res.data.user)   

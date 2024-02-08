@@ -1,0 +1,25 @@
+.address{
+    border: 2px solid black;
+    box-sizing: border-box;
+    width: 70%;
+    height: 35%;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+.address h5{
+    margin: 0;
+}
+.main_div{
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem;
+}
+.name_sec{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+}
+.order_btn{
+    display: flex;
+    justify-content: center;
+}

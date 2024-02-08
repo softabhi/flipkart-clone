@@ -22,7 +22,7 @@ const Siderbar = () => {
                         </div>
                     </Link>
 
-                    <Link to=''>
+                    <Link to='/orders'>
                         <div className='row py-2 ps-3'>
                             <FaShoppingCart />
                             <button className='side-btn ps-2'>Orders</button>
