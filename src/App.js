@@ -8,7 +8,7 @@ import Navsection from './pagesComp/Navsection';
 import Home from './pagesComp/Home';
 // import Product from './pagesComp/Product';
 import ProducDetails from './pagesComp/ProducDetails';
-import Addcart from './assest/productComponet/Addcart'
+import Addcart from './pagesComp/Addcart'
 import RegiCom from './pagesComp/RegiCom';
 import { useState, createContext } from 'react';
 import UserProfile from './pagesComp/UserProfile';
@@ -38,16 +38,16 @@ function App() {
   const [logedUser, setLogedUser] = useState();
   // const [logout, setLogout] = useState();
   const [logedSeller, setLogedSeller] = useState();
-  const [logoutSeller, setLogoutSeller] = useState();
+  // const [logoutSeller, setLogoutSeller] = useState();
   const [userId, setUserId] = useState("");
   const [searchItem, setSearchItem] = useState();
   const [addProduct, setCurrProduId] = useState();
-  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartCount] = useState(0);
   // const [userIcon, setUserIcon] = useState();
 
   // setUserIcon()
   // console.log(currProduId)
-  // console.log(logoutSeller)  
+  // console.log(logedSeller)  
   // setLogedUser(logout)
 
 
@@ -57,7 +57,7 @@ function App() {
   return (
 
     
-    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem, addProduct, logedUser,logedSeller }}>
+    <globleInfo.Provider value={{ singleUserData: singleUserData, singleUserId: userId, searchItem, addProduct, logedUser,logedSeller,cartItems }}>
     
       <>
       <Provider store={store}>
@@ -78,7 +78,7 @@ function App() {
           />, <Home />] : <UserRegistration setLogedUser={setLogedUser} />} />
 
 
-          <Route path="/SellerRegis" element={logedSeller && logedSeller._id ? <Dashboard /> : <SellerRegis setLogedSeller={setLogedSeller} />} />
+          <Route path="/SellerRegis" element={logedSeller && logedSeller._id ? <Dashboard  setLogoutSeller={setLogedSeller}/> : <SellerRegis setLogedSeller={setLogedSeller} />} />
 
           <Route path="/" element={[<Navsection currentUser={logedUser}
             // setLogout={setLogout} 
@@ -86,7 +86,7 @@ function App() {
             setLogoutSeller={setLogedSeller}
             currentLogedSeller={logedSeller}
             setSearchItem={setSearchItem}
-            cartCount={cartCount}
+            cartCount={cartItems.length}
 
           />, <Home setCurrProduId={setCurrProduId} />]} />
 

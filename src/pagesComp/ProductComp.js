@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
-import  '../../cssComp/productsCom.css'
+import  '../cssComp/productsCom.css'
 // import pic from '../images.js';
 // import axios from 'axios'
-import { BASE_URL } from '../../helpers/backedurl.js';
+import { BASE_URL } from '../helpers/backedurl.js';
 import { Link } from 'react-router-dom';
 import { RotatingLines} from 'react-loader-spinner'
 // import clothList from './allProductData/ClothProdu.js';
-import { globleInfo } from '../../App.js';
+import { globleInfo } from '../App.js';
 
 
 const ProductComp =  ({setCurrProduId}) => {

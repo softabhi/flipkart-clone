@@ -37,3 +37,11 @@
     .tabheding {
        /* color: white; */
     }
+    .seller_pic{
+        position: relative;
+        right: -20rem;
+        /* margin-left: 10px; */
+    }
+    ._pic{
+        /* margin-right: 10px; */
+    }

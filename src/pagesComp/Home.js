@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../cssComp/HomePage.css';
 // import '../cssComp/LoginCom.css'
-import ProductComp from '../assest/productComponet/ProductComp';
+import ProductComp from './ProductComp.js';
 // import HomeProdu from '../assest/productComponet/HomeProduCom';
 import pic from '../assest/images.js';
 import Footer from './Footer';

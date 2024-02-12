@@ -2,6 +2,7 @@ import React, { useRef, useState,useEffect, useContext} from 'react'
 import '../cssComp/UserProfi.css'
 import userImg from '../assest/homeProdu/photo1.jpg'
 import { globleInfo } from '../App'
+import { BASE_URL } from '../helpers/backedurl'
 
 
 
@@ -31,11 +32,12 @@ const SellerProfile = ({ setLogoutSeller,currentLogedSeller }) => {
         console.log("hero",20)
     },[setLogoutSeller])
 
-    // const logoutHandler = ()=>{
-        
-    // }
+    const logoutHandler = ()=>{
+        setLogoutSeller("sd")
+        console.log("monuoo");
+    }
 
-    // console.log("monuoo");
+   
     console.log(logedSeller);
 
     return (
@@ -43,12 +45,14 @@ const SellerProfile = ({ setLogoutSeller,currentLogedSeller }) => {
             <div>
                 <img 
                 ref={imgRef}
-                src={`http://localhost:5001/${logedSeller.profileImg}`} 
+                src={`${BASE_URL}/${logedSeller.profileImg}`} 
                 alt="" 
                 className='pictu ms-5' 
                 onClick={ () => setOpen(!open)}
                 />
+                 <h5>{logedSeller.name}</h5>
              </div>
+            
                 {
                     open && (
                         <div ref={menuRef} className="menus bg-white px-5 py-3 border border-secondary rounded">
@@ -61,7 +65,7 @@ const SellerProfile = ({ setLogoutSeller,currentLogedSeller }) => {
                                
                             }
                              <div className="logout-btn">
-                                    <button type='btn' className='btn btn-success' onClick={()=> setLogoutSeller("")}>Logout</button>
+                                    <button type='btn' className='btn btn-success' onClick={()=>logoutHandler()}>Logout</button>
                             </div>
                             
                         </div>

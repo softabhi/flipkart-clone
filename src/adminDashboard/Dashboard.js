@@ -9,7 +9,7 @@ import SellerProfile from '../pagesComp/SellerProfile';
 // import AddProduct from './AddProduct'
 
 
-const Dashboard = () => {
+const Dashboard = ({setLogoutSeller}) => {
     return (
         
         <>
@@ -18,7 +18,12 @@ const Dashboard = () => {
              <div className="col">
                 <h2>Wel Come..... Merchant</h2>
              </div>
-             <SellerProfile/>
+             <div className="col seller_pic">
+                <div className='_pic'>
+                <SellerProfile  setLogoutSeller={setLogoutSeller}/>
+                </div>
+             </div>
+            
            </div>
         </div>
 

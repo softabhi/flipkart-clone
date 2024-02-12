@@ -148,7 +148,7 @@ const Navsection = ({cartCount, currentUser, setLogedUser, setSearchItem, curren
 
                             <Link to="/sellerRegis">
                                 {/* <h4  className='btn text-white ms-2 fw-bold'>{currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller}/> :"Become partner"}</h4> */}
-                                {currentLogedSeller && currentLogedSeller._id ? <SellerProfile setLogoutSeller={setLogoutSeller} currentLogedSeller={currentLogedSeller} /> : <h5 className='btn text-white ms-4 fw-bold'>Become/Seller</h5>}
+                                {currentLogedSeller && currentLogedSeller._id ? <SellerProfile  currentLogedSeller={currentLogedSeller} /> : <h5 className='btn text-white ms-4 fw-bold'>Become/Seller</h5>}
 
                             </Link>
                         </div>

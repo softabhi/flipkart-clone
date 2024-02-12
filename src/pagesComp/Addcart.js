@@ -1,11 +1,11 @@
-import '../../cssComp/addcart.css'
+import '../cssComp/addcart.css'
 import React, { useEffect, useState,useContext } from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 
-import pic from '../images'
-import { BASE_URL } from '../../helpers/backedurl'
-import { globleInfo } from '../../App'
-import { remove } from '../../globalStore/cartSlice';
+import pic from '../assest/images'
+import { BASE_URL } from '../helpers/backedurl'
+import { globleInfo } from '../App'
+import { remove } from '../globalStore/cartSlice';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
@@ -33,17 +33,16 @@ const Addcart = ({setCartCount}) => {
         // console.log(userId)
         if(logedUser && logedUser._id){
             let userId = logedUser._id
-            axios.get(`http://localhost:5001/api/v2/cartItems/${userId}`) 
+            axios.get(`${BASE_URL}/api/v2/cartItems/${userId}`) 
             .then(res=>{
                 setCartItem(res.data.result)
                 // console.log(res.data.massage)
                 // console.log(res.data.result)
+                setCartCount(res.data.result)
             })
 
-            setCartCount(cartItem.length)
+            
         }
-      
-
     
     },[cartItem, logedUser])
 
@@ -59,7 +58,7 @@ const Addcart = ({setCartCount}) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId, itemId })
             };
-            fetch('http://localhost:5001/api/v2/increaseCartItem', requestOptions)
+            fetch(`${BASE_URL}/api/v2/increaseCartItem`, requestOptions)
                 .then((response) => {
                     // console.log(response,11)
                     return response.json();
@@ -89,7 +88,7 @@ const Addcart = ({setCartCount}) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId, itemId })
             };
-            fetch('http://localhost:5001/api/v2/decreaseCartItem', requestOptions)
+            fetch(`${BASE_URL}/api/v2/decreaseCartItem`, requestOptions)
                 .then((response) => {
                     // console.log(response,11)
                     return response.json();
@@ -119,7 +118,7 @@ const Addcart = ({setCartCount}) => {
 
         // dispatch(remove(itemId))
 
-        axios.post("http://localhost:5001/api/v2/deleteCartItem",ids) 
+        axios.post(`${BASE_URL}/api/v2/deleteCartItem`,ids) 
             .then(response=>{
                 // dispatch(add(res.data.result.cart))
                 // setCartItem(res.data.result.cart)

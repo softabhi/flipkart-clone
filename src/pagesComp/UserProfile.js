@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import '../cssComp/UserProfi.css'
 import userImg from '../assest/homeProdu/photo1.jpg'
+import { BASE_URL } from '../helpers/backedurl';
 
 
 const UserProfile = ({ setLogout,setLogedUser,currentUser }) => {
@@ -25,7 +26,7 @@ const UserProfile = ({ setLogout,setLogedUser,currentUser }) => {
             <div>
                 <img 
                 ref={imgRef}
-                src={`http://localhost:5001/${currentUser.profileImg}`} 
+                src={`${BASE_URL}/${currentUser.profileImg}`} 
                 alt="" 
                 className='pictu ms' 
                 onClick={ () => setOpen(!open)}

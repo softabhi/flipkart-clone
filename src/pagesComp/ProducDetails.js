@@ -65,7 +65,7 @@ const ProducDetails = () => {
                     // setSearchItem(data)
                     console.log(data.massage, 10)
                     Swal.fire({
-                        title: "Good job!",
+                        title: data.massage,
                         text: "You clicked the button!",
                         icon: "success"
                       });
