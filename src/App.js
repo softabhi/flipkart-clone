@@ -54,6 +54,9 @@ function App() {
   const singleUserData = (id) => {
     setUserId(id)
   }
+  const cartLengthFunc = (cartlength) => {
+    setCartCount(cartlength)
+  }
   return (
 
     
@@ -98,7 +101,7 @@ function App() {
 
           
           <Route path="/productDetails" element={<ProducDetails />} />
-          <Route path="/cartpage" element={<Addcart setCartCount={setCartCount}/>} />
+          <Route path="/cartpage" element={<Addcart setCartCount={cartLengthFunc}/>} />
 
           {/* <Route path="/addproduct" element={<AddProduct/>} /> */}
 

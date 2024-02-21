@@ -20,7 +20,35 @@ const Ordersummarypage = () => {
 
   const orderPlaceFunction = () => {
 
-    if (cartItems) {
+    if (!cartItems.length) {
+      // let userId = logedUser._id;
+
+      // const requestOptions = {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ userId, cartItems })
+      // };
+      // fetch(`${BASE_URL}/api/v2/orderadd`, requestOptions)
+      //   .then((response) => {
+      //     // console.log(response,11)
+      //     return response.json();
+      //   })
+      //   .then(data => {
+      //     // setProducts(data)
+      //     // setFilterProduct(data);
+      //     // setSearchItem(data)
+      //     console.log(data.massage, 10)
+          Swal.fire({
+            title: "Cart Is Empty",
+            icon: "error"
+          });
+          // alert(data.massage)
+
+        // })
+
+    } else {
+
+
       let userId = logedUser._id;
 
       const requestOptions = {
@@ -28,7 +56,8 @@ const Ordersummarypage = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, cartItems })
       };
-      fetch(`${BASE_URL}/api/v2/orderadd`, requestOptions)
+      // fetch(`${BASE_URL}/api/v2/orderadd`, requestOptions)
+      fetch(`http://localhost:5001/api/v2/orderadd`, requestOptions)
         .then((response) => {
           // console.log(response,11)
           return response.json();
@@ -47,8 +76,8 @@ const Ordersummarypage = () => {
 
         })
 
-    } else {
-      alert("please loging first for item add")
+
+      // alert("please loging first for item add")
       // navigation("/loginRegise")
       // navigation("/loginRegise")
       // Navigate("/loginRegise")

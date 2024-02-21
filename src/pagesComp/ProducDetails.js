@@ -54,7 +54,7 @@ const ProducDetails = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId, addProduct })
             };
-            fetch('http://localhost:5001/api/v2/addCart', requestOptions)
+            fetch(`${BASE_URL}/api/v2/addCart`, requestOptions)
                 .then((response) => {
                     // console.log(response,11)
                     return response.json();
